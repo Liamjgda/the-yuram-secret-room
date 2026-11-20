@@ -389,111 +389,56 @@ button {
   margin: -15px auto 30px;
 }
 
-// NEW TOUCH-FRIENDLY PUZZLE
-const puzzleBoard = document.getElementById("puzzle");
+.puzzle-wrap {
+  max-width: 390px;
+  margin: auto;
+  padding: 15px;
+  border: 1px solid #493541;
+  background: #171219;
+}
 
-if (puzzleBoard) {
-    const image = "./file_000000009ed48246bce90797ba59e558.webp";
-    let pieces = [1, 2, 3, 4, 5, 6, 7, 8, 0];
-    let moves = 0;
+.puzzle {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  width: 100%;
+  aspect-ratio: 1;
+  background: #2b202b;
+}
 
-    puzzleBoard.innerHTML = "";
-    puzzleBoard.style.display = "grid";
-    puzzleBoard.style.gridTemplateColumns = "repeat(3, 1fr)";
-    puzzleBoard.style.gridTemplateRows = "repeat(3, 1fr)";
-    puzzleBoard.style.gap = "4px";
-    puzzleBoard.style.width = "min(90vw, 360px)";
-    puzzleBoard.style.aspectRatio = "1 / 1";
-    puzzleBoard.style.margin = "auto";
-
-    function drawPuzzle() {
-        puzzleBoard.innerHTML = "";
-
-        pieces.forEach((piece, index) => {
-            const tile = document.createElement("button");
-            tile.type = "button";
-            tile.style.aspectRatio = "1";
-            tile.style.border = "0";
-            tile.style.borderRadius = "8px";
-            tile.style.padding = "0";
-            tile.style.minWidth = "0";
-            tile.style.backgroundSize = "300% 300%";
-            tile.style.touchAction = "manipulation";
-
-            if (piece === 0) {
-                tile.style.background = "rgba(255,255,255,.08)";
-                tile.style.border = "1px dashed #b98b9e";
-            } else {
-                const row = Math.floor((piece - 1) / 3);
-                const col = (piece - 1) % 3;
-
-                tile.style.backgroundImage = `url("${image}")`;
-                tile.style.backgroundPosition =
-                    `${col * 50}% ${row * 50}%`;
-            }
-
-            tile.addEventListener("click", () => movePiece(index));
-            puzzleBoard.appendChild(tile);
-        });
-    }
-
-    function movePiece(index) {
-        const empty = pieces.indexOf(0);
-
-        const sameRow =
-            Math.floor(index / 3) === Math.floor(empty / 3);
-        const sameCol = index % 3 === empty % 3;
-
-        if (
-            (sameRow && Math.abs(index - empty) === 1) ||
-            (sameCol && Math.abs(index - empty) === 3)
-        ) {
-            [pieces[index], pieces[empty]] =
-                [pieces[empty], pieces[index]];
-
-            moves++;
-            drawPuzzle();
-
-            const counter = document.getElementById("moves");
-            if (counter) counter.textContent = moves;
-
-            if (pieces.every((p, i) => p === i + 1 || (i === 8 && p === 0))) {
-                alert("You solved the puzzle!");
-            }
-        }
-    }
-
-    function shufflePuzzle() {
-        pieces = [1, 2, 3, 4, 5, 6, 7, 8, 0];
-
-        for (let i = 0; i < 150; i++) {
-            const empty = pieces.indexOf(0);
-            const neighbors = [
-                empty - 3,
-                empty + 3,
-                ...(empty % 3 !== 0 ? [empty - 1] : []),
-                ...(empty % 3 !== 2 ? [empty + 1] : [])
-            ].filter(n => n >= 0 && n < 9);
-
-            const chosen = neighbors[
-                Math.floor(Math.random() * neighbors.length)
-            ];
-
-            [pieces[empty], pieces[chosen]] =
-                [pieces[chosen], pieces[empty]];
-        }
-
-        moves = 0;
-        drawPuzzle();
-    }
-
-    shufflePuzzle();
- 
- /* FORCE NEW PUZZLE IMAGE */
 .tile {
-    background-image: url("./file_000000009ed48246bce90797ba59e558.webp") !important;
-    background-repeat: no-repeat !important;  background-size: 300% 300% !important; }  }
-  }
+  position: relative;
+  border: 1px solid #493541;
+  background-image: url("./file_000000009ed48246bce90797ba59e558.webp");
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  cursor: pointer;
+  min-width: 0;
+  border-radius: 4px;
+  transition: border .2s, transform .2s;
+  touch-action: manipulation;
+}
+
+.tile.selected {
+  border: 3px solid #e6a9c0;
+  transform: scale(.94);
+  box-shadow: 0 0 12px #c58b9f;
+}
+
+.puzzle-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.puzzle-controls span {
+  font-size: 10px;
+  color: var(--silver);
+}
+
 #moves {
   color: var(--pink);
 }
@@ -918,11 +863,15 @@ function closeLetter() {
   document.getElementById("letter-content").classList.add("hidden");
 }
 
-/* SLIDING PUZZLE */
+/* NEW FREE MOVE PUZZLE */
 
 let puzzleTiles = [];
 let moves = 0;
 let puzzleStarted = false;
+let selectedTile = null;
+
+const puzzleImage =
+  "./file_000000009ed48246bce90797ba59e558.webp";
 
 function renderPuzzle() {
   const puzzle = document.getElementById("puzzle");
@@ -930,19 +879,24 @@ function renderPuzzle() {
 
   puzzleTiles.forEach((piece, index) => {
     const tile = document.createElement("button");
+
+    tile.type = "button";
     tile.className = "tile";
 
-    if (piece === 8) {
-      tile.classList.add("empty");
-    } else {
-      const row = Math.floor(piece / 3);
-      const col = piece % 3;
+    const row = Math.floor(piece / 3);
+    const col = piece % 3;
 
-      tile.style.backgroundPosition =
-        `${col * 50}% ${row * 50}%`;
+    tile.style.backgroundImage = `url("${puzzleImage}")`;
+    tile.style.backgroundPosition =
+      `${col * 50}% ${row * 50}%`;
+
+    if (selectedTile === index) {
+      tile.classList.add("selected");
     }
 
-    tile.addEventListener("click", () => moveTile(index));
+    tile.addEventListener("click", () => {
+      selectTile(index);
+    });
 
     puzzle.appendChild(tile);
   });
@@ -950,69 +904,72 @@ function renderPuzzle() {
   document.getElementById("moves").textContent = moves;
 }
 
-function moveTile(index) {
-  const emptyIndex = puzzleTiles.indexOf(8);
+function selectTile(index) {
+  if (selectedTile === null) {
+    selectedTile = index;
+    renderPuzzle();
+    return;
+  }
 
-  const row = Math.floor(index / 3);
-  const col = index % 3;
+  if (selectedTile === index) {
+    selectedTile = null;
+    renderPuzzle();
+    return;
+  }
 
-  const emptyRow = Math.floor(emptyIndex / 3);
-  const emptyCol = emptyIndex % 3;
+  const first = selectedTile;
 
-  const isNeighbor =
-    (Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
-    (Math.abs(col - emptyCol) === 1 && row === emptyRow);
+  [
+    puzzleTiles[first],
+    puzzleTiles[index]
+  ] = [
+    puzzleTiles[index],
+    puzzleTiles[first]
+  ];
 
-  if (!isNeighbor) return;
-
-  [puzzleTiles[index], puzzleTiles[emptyIndex]] =
-    [puzzleTiles[emptyIndex], puzzleTiles[index]];
-
+  selectedTile = null;
   moves++;
+
   renderPuzzle();
   checkWin();
 }
 
 function shufflePuzzle() {
   puzzleTiles = [0,1,2,3,4,5,6,7,8];
-  moves = 0;
 
-  let previousEmpty = -1;
+  for (let i = puzzleTiles.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
 
-  for (let i = 0; i < 100; i++) {
-    const empty = puzzleTiles.indexOf(8);
-
-    const row = Math.floor(empty / 3);
-    const col = empty % 3;
-
-    let neighbors = [];
-
-    if (row > 0) neighbors.push(empty - 3);
-    if (row < 2) neighbors.push(empty + 3);
-    if (col > 0) neighbors.push(empty - 1);
-    if (col < 2) neighbors.push(empty + 1);
-
-    if (neighbors.length > 1 && previousEmpty !== -1) {
-      neighbors = neighbors.filter(n => n !== previousEmpty);
-    }
-
-    const chosen = neighbors[Math.floor(Math.random() * neighbors.length)];
-
-    previousEmpty = empty;
-
-    [puzzleTiles[empty], puzzleTiles[chosen]] =
-      [puzzleTiles[chosen], puzzleTiles[empty]];
+    [
+      puzzleTiles[i],
+      puzzleTiles[j]
+    ] = [
+      puzzleTiles[j],
+      puzzleTiles[i]
+    ];
   }
 
-  document.getElementById("win-message").classList.add("hidden");
+  moves = 0;
+  selectedTile = null;
+
+  document
+    .getElementById("win-message")
+    .classList.add("hidden");
+
   renderPuzzle();
 }
 
 function checkWin() {
   const solved = [0,1,2,3,4,5,6,7,8];
 
-  if (puzzleTiles.every((piece, index) => piece === solved[index])) {
-    document.getElementById("win-message").classList.remove("hidden");
+  const isSolved = puzzleTiles.every(
+    (piece, index) => piece === solved[index]
+  );
+
+  if (isSolved) {
+    document
+      .getElementById("win-message")
+      .classList.remove("hidden");
   }
 }
 
