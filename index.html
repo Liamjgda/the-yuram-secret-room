@@ -1,89 +1,100 @@
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yuram's Secret Room</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500&display=swap" rel="stylesheet">
 
+<style>
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #100d12;
+  --panel: #1d1720;
+  --pink: #c49aaf;
+  --soft: #e9dce4;
+  --muted: #988995;
+  --border: #594352;
 }
 
 body {
-  background: #100d12;
-  color: #f1e8ed;
-  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--soft);
+  font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
 }
 
-.hidden {
-  display: none !important;
+.hidden { display: none !important; }
+
+button, input {
+  font-family: inherit;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
+button { cursor: pointer; }
 
 .page {
   min-height: 100vh;
-  padding: 35px 20px 60px;
+  padding: 35px 20px 65px;
   text-align: center;
 }
 
-.small-title {
-  color: #b98ca5;
-  font-size: 11px;
-  letter-spacing: 4px;
-  direction: ltr;
-  margin-bottom: 15px;
+.eyebrow {
+  color: var(--pink);
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: 27px;
-  font-weight: 500;
-  color: #f3dce8;
-  margin-bottom: 15px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 39px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #f1e5ec;
 }
 
 .subtitle {
-  color: #a99ba5;
-  font-size: 13px;
-  line-height: 2.2;
-  max-width: 450px;
-  margin: 0 auto;
+  max-width: 430px;
+  margin: 15px auto;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 2;
 }
 
 .main-btn {
-  background: #704c63;
+  background: #704d63;
+  border: 1px solid #a77e98;
   color: white;
-  border: 1px solid #a77b94;
   padding: 12px 35px;
-  border-radius: 30px;
   margin-top: 25px;
-  font-size: 14px;
-  transition: .3s;
+  font-size: 11px;
+  letter-spacing: 2px;
+  border-radius: 2px;
 }
 
 .main-btn:hover {
-  background: #95677f;
+  background: #8b647d;
 }
 
 .back-btn {
   display: block;
-  margin: 0 auto 35px;
+  margin: 0 auto 40px;
   background: transparent;
-  color: #c7a5b8;
-  border: 1px solid #594453;
-  padding: 8px 20px;
-  border-radius: 25px;
-  font-size: 12px;
+  color: var(--pink);
+  border: 1px solid var(--border);
+  padding: 9px 23px;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
 /* LOGIN */
@@ -99,17 +110,15 @@ h1 {
 
 .login-box {
   width: 100%;
-  max-width: 390px;
-  padding: 40px 25px;
-  border: 1px solid #483443;
-  background: #19131b;
-  border-radius: 20px;
-  box-shadow: 0 0 50px #0008;
+  max-width: 380px;
+  padding: 45px 25px;
+  background: var(--panel);
+  border: 1px solid var(--border);
 }
 
 .login-heart {
-  color: #c18aa7;
-  font-size: 38px;
+  font-size: 35px;
+  color: var(--pink);
   margin-bottom: 20px;
 }
 
@@ -118,19 +127,17 @@ h1 {
   width: 100%;
   margin-top: 25px;
   padding: 13px;
-  border-radius: 10px;
-  border: 1px solid #594454;
   background: #100d12;
   color: white;
+  border: 1px solid var(--border);
   text-align: center;
-  font-family: inherit;
   outline: none;
-  direction: ltr;
+  font-size: 13px;
 }
 
 #error {
-  color: #d98b9c;
-  font-size: 12px;
+  color: #d58d9f;
+  font-size: 11px;
   margin-top: 12px;
 }
 
@@ -138,7 +145,7 @@ h1 {
 
 .hall-grid {
   max-width: 650px;
-  margin: 50px auto;
+  margin: 55px auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
@@ -146,120 +153,99 @@ h1 {
 
 .door {
   min-height: 170px;
-  background: linear-gradient(145deg, #291d2a, #17121a);
-  border: 1px solid #64485c;
-  border-radius: 14px;
-  color: #f0dce7;
+  background: linear-gradient(145deg, #291e2b, #17121a);
+  border: 1px solid var(--border);
+  color: var(--soft);
   padding: 25px 10px;
   transition: .3s;
 }
 
 .door:hover {
   transform: translateY(-5px);
-  background: #352337;
+  border-color: var(--pink);
 }
 
 .door-icon {
   display: block;
-  font-size: 30px;
-  color: #c397b0;
-  margin-bottom: 17px;
+  color: var(--pink);
+  font-size: 28px;
+  margin-bottom: 18px;
 }
 
 .door h3 {
-  font-size: 14px;
-  direction: ltr;
-  letter-spacing: 1px;
-  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-weight: 400;
 }
 
 .door p {
-  color: #a99ba5;
-  font-size: 11px;
-  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  margin-top: 12px;
 }
 
-/* ROOM CONTENT */
+/* MEMORIES */
 
 .room-content {
   max-width: 750px;
   margin: 40px auto;
 }
 
-/* MEMORIES */
-
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 18px;
   margin-top: 35px;
 }
 
 .photo-card {
-  background: #211923;
-  padding: 9px 9px 15px;
-  border: 1px solid #4a3647;
-  border-radius: 7px;
+  background: var(--panel);
+  padding: 9px 9px 14px;
+  border: 1px solid #493646;
   cursor: pointer;
   transition: .3s;
 }
 
 .photo-card:hover {
-  transform: translateY(-5px) rotate(-1deg);
+  transform: translateY(-5px);
 }
 
 .photo-card img {
   width: 100%;
   height: 190px;
   object-fit: cover;
-  border-radius: 3px;
 }
 
 .photo-card p {
-  font-size: 12px;
-  color: #c8a9ba;
+  color: var(--pink);
+  font-size: 10px;
   margin-top: 12px;
+  letter-spacing: 1px;
 }
 
-/* UNSAID LETTERS */
+/* UNSAID */
 
 .letters {
   width: 100%;
   max-width: 520px;
-  margin: 45px auto 20px;
+  margin: 50px auto 20px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 42px 18px;
+  gap: 45px 20px;
 }
 
 .letter-card {
-  min-width: 0;
   cursor: pointer;
-  text-align: center;
   animation: appear .7s ease both;
 }
 
-.letter-card:nth-child(2) {
-  animation-delay: .12s;
-}
-
-.letter-card:nth-child(3) {
-  animation-delay: .24s;
-}
-
-.letter-card:nth-child(4) {
-  animation-delay: .36s;
-}
+.letter-card:nth-child(2) { animation-delay: .1s; }
+.letter-card:nth-child(3) { animation-delay: .2s; }
+.letter-card:nth-child(4) { animation-delay: .3s; }
 
 @keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .envelope {
@@ -270,7 +256,6 @@ h1 {
   margin: auto;
   background: #594052;
   border: 1px solid #a17a91;
-  border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 10px 25px #0006;
   transition: .3s;
@@ -278,7 +263,6 @@ h1 {
 
 .letter-card:hover .envelope {
   transform: translateY(-7px);
-  box-shadow: 0 15px 30px #0009;
 }
 
 .envelope-back {
@@ -294,7 +278,6 @@ h1 {
   left: 10%;
   top: 7%;
   background: #f0e5eb;
-  border-radius: 3px;
   z-index: 2;
   transition: .6s;
 }
@@ -339,18 +322,19 @@ h1 {
 }
 
 .letter-card h3 {
-  font-size: 13px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
   color: #e7c9d9;
-  margin-top: 15px;
+  margin-top: 16px;
   font-weight: 400;
 }
 
 .letter-card small {
   display: block;
-  color: #988593;
-  font-size: 10px;
-  margin-top: 5px;
-  direction: ltr;
+  color: var(--muted);
+  font-size: 9px;
+  margin-top: 6px;
+  letter-spacing: 3px;
 }
 
 /* LETTER MODAL */
@@ -359,11 +343,11 @@ h1 {
   position: fixed;
   inset: 0;
   z-index: 50;
-  background: #08060beF;
+  background: #08060bf0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 18px;
 }
 
 .letter-inside {
@@ -373,41 +357,40 @@ h1 {
   overflow-y: auto;
   background: #211923;
   border: 1px solid #79576d;
-  border-radius: 13px;
-  padding: 30px 23px;
+  padding: 30px 24px;
   text-align: right;
   animation: letterOpen .5s ease;
 }
 
 @keyframes letterOpen {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(25px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .letter-inside h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
   color: #d9aec5;
-  font-size: 19px;
-  font-weight: 500;
+  font-weight: 400;
   margin-bottom: 22px;
+  text-align: center;
 }
 
 .letter-inside p {
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
   color: #e4d7df;
-  font-size: 14px;
-  line-height: 2.6;
+  font-size: 13px;
+  line-height: 2.7;
   white-space: pre-line;
 }
 
 .signature {
   text-align: left;
-  color: #c69bb2;
-  font-size: 13px;
+  color: var(--pink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
   margin-top: 25px;
   direction: ltr;
 }
@@ -418,8 +401,9 @@ h1 {
   border: 1px solid #79576d;
   color: #e4c5d6;
   background: transparent;
-  padding: 8px 25px;
-  border-radius: 25px;
+  padding: 9px 25px;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
 /* LITTLE THINGS */
@@ -432,13 +416,13 @@ h1 {
 }
 
 .little-item {
-  background: #211923;
+  background: var(--panel);
   border: 1px solid #493646;
   padding: 20px;
-  border-radius: 10px;
   color: #e4cbd8;
-  font-size: 13px;
-  line-height: 2.2;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 12px;
+  line-height: 2.5;
 }
 
 /* FINAL */
@@ -449,22 +433,24 @@ h1 {
   padding: 35px 25px;
   background: linear-gradient(145deg, #291d2a, #17121a);
   border: 1px solid #735267;
-  border-radius: 15px;
 }
 
 .final-box .big-heart {
-  color: #c18aa7;
+  color: var(--pink);
   font-size: 42px;
   margin-bottom: 20px;
 }
 
 .final-box p {
-  font-size: 14px;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  font-size: 13px;
   line-height: 2.8;
   color: #e6d6df;
+  text-align: right;
 }
 
-/* IMAGE VIEWER */
+/* PHOTO MODAL */
 
 .photo-modal {
   position: fixed;
@@ -482,25 +468,13 @@ h1 {
   max-height: 85vh;
   object-fit: contain;
   border: 1px solid #79576d;
-  border-radius: 7px;
 }
 
 @media(max-width: 380px) {
-  .envelope {
-    height: 105px;
-  }
-
-  .letter-card h3 {
-    font-size: 11px;
-  }
-
-  .photo-card img {
-    height: 145px;
-  }
-
-  h1 {
-    font-size: 23px;
-  }
+  .envelope { height: 105px; }
+  .letter-card h3 { font-size: 16px; }
+  .photo-card img { height: 145px; }
+  h1 { font-size: 33px; }
 }
 </style>
 </head>
@@ -512,17 +486,11 @@ h1 {
 <section id="login">
   <div class="login-box">
     <div class="login-heart">♡</div>
-    <div class="small-title">A PRIVATE PLACE</div>
+    <div class="eyebrow">A PRIVATE PLACE</div>
     <h1>Welcome, Yuram</h1>
-    <p class="subtitle">
-      یه جای کوچیک که همه‌چیزش برای توئه.
-      <br>
-      رمز ورود رو وارد کن.
-    </p>
-
-    <input id="password" type="password" placeholder="Enter the password">
-
-    <button class="main-btn" onclick="enterSite()">Enter</button>
+    <p class="subtitle">A little world made just for you.</p>
+    <input id="password" type="password" placeholder="Enter password">
+    <button class="main-btn" onclick="enterSite()">ENTER</button>
     <p id="error"></p>
   </div>
 </section>
@@ -530,89 +498,76 @@ h1 {
 <!-- HALL -->
 
 <section id="hall" class="page hidden">
-  <div class="small-title">YURAM'S PRIVATE WORLD</div>
-  <h1>Welcome to your little world</h1>
-  <p class="subtitle">
-    چهار تا در هست که پشت هر کدوم یه چیزی برات کنار گذاشتم.
-    <br>
-    هر کدوم رو که دوست داشتی باز کن.
-  </p>
+  <div class="eyebrow">YURAM'S PRIVATE WORLD</div>
+  <h1>Your Little World</h1>
+  <p class="subtitle">Four doors. Four little pieces of my heart.</p>
 
   <div class="hall-grid">
-
     <button class="door" onclick="openRoom('memories')">
       <span class="door-icon">♡</span>
       <h3>THE MEMORIES</h3>
-      <p>چیزهایی که با تو قشنگ‌تر شدن</p>
+      <p>Little moments, forever kept.</p>
     </button>
 
     <button class="door" onclick="openRoom('unsaid')">
       <span class="door-icon">✉</span>
       <h3>THE UNSAID</h3>
-      <p>حرف‌هایی که نگفتم</p>
+      <p>Words I never said.</p>
     </button>
 
     <button class="door" onclick="openRoom('little')">
       <span class="door-icon">✧</span>
       <h3>THE LITTLE THINGS</h3>
-      <p>جزئیات کوچیکِ دوست‌داشتنی</p>
+      <p>All the details I love.</p>
     </button>
 
     <button class="door" onclick="openRoom('final')">
       <span class="door-icon">♥</span>
       <h3>THE FINAL GIFT</h3>
-      <p>یه چیز مخصوص خودت</p>
+      <p>Something just for you.</p>
     </button>
-
   </div>
 </section>
 
 <!-- MEMORIES -->
 
 <section id="memories" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← برگشت</button>
-
-  <div class="small-title">OUR LITTLE WORLD</div>
+  <button class="back-btn" onclick="goBack()">← BACK</button>
+  <div class="eyebrow">OUR LITTLE WORLD</div>
   <h1>THE MEMORIES</h1>
-  <p class="subtitle">
-    بعضی عکس‌ها فقط عکس نیستن.
-    <br>
-    یه عالمه حس و خاطره پشتشونه.
-  </p>
+  <p class="subtitle">Some moments deserve to stay forever.</p>
 
   <div class="room-content">
     <div class="photo-grid">
-
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261031_222640_582.jpg" alt="Memory 1">
-        <p>یه گوشه از خاطراتمون ♡</p>
+        <p>MEMORY 01</p>
       </div>
 
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261022_223537_551.jpg" alt="Memory 2">
-        <p>این یکی رو دوست دارم</p>
+        <p>MEMORY 02</p>
       </div>
 
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261022_175423_214.jpg" alt="Memory 3">
-        <p>یه خاطره‌ی دیگه</p>
+        <p>MEMORY 03</p>
       </div>
 
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261021_191011_709.jpg" alt="Memory 4">
-        <p>تو و من</p>
+        <p>MEMORY 04</p>
       </div>
 
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261016_115536_132.jpg" alt="Memory 5">
-        <p>از اون چیزایی که می‌مونه</p>
+        <p>MEMORY 05</p>
       </div>
 
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261015_162449_244.jpg" alt="Memory 6">
-        <p>بازم تو، بازم من ♡</p>
+        <p>MEMORY 06</p>
       </div>
-
     </div>
   </div>
 </section>
@@ -620,19 +575,10 @@ h1 {
 <!-- THE UNSAID -->
 
 <section id="unsaid" class="page room hidden">
-
-  <button class="back-btn" onclick="goBack()">← برگشت</button>
-
-  <div class="small-title">WORDS I KEPT TO MYSELF</div>
+  <button class="back-btn" onclick="goBack()">← BACK</button>
+  <div class="eyebrow">WORDS I KEPT TO MYSELF</div>
   <h1>THE UNSAID</h1>
-
-  <p class="subtitle">
-    یه سری حرفا هستن که شاید هیچ‌وقت درست و حسابی بهت نگفته باشم.
-    <br>
-    اینجا می‌تونی بخونیشون.
-  </p>
-
-  <!-- FOUR ENVELOPES -->
+  <p class="subtitle">Some things are easier to write than to say.</p>
 
   <div class="letters">
 
@@ -644,7 +590,7 @@ h1 {
         <div class="envelope-front"></div>
         <div class="envelope-heart">♡</div>
       </div>
-      <h3>چیزی که توی تو دوست دارم</h3>
+      <h3>What I Love About You</h3>
       <small>LETTER 01</small>
     </div>
 
@@ -656,7 +602,7 @@ h1 {
         <div class="envelope-front"></div>
         <div class="envelope-heart">♡</div>
       </div>
-      <h3>چیزایی که بهت نمی‌گم</h3>
+      <h3>Things I Never Say</h3>
       <small>LETTER 02</small>
     </div>
 
@@ -668,7 +614,7 @@ h1 {
         <div class="envelope-front"></div>
         <div class="envelope-heart">♡</div>
       </div>
-      <h3>یه اعتراف کوچیک</h3>
+      <h3>A Little Confession</h3>
       <small>LETTER 03</small>
     </div>
 
@@ -680,7 +626,7 @@ h1 {
         <div class="envelope-front"></div>
         <div class="envelope-heart">♡</div>
       </div>
-      <h3>برای روز تولدت</h3>
+      <h3>On Your Birthday</h3>
       <small>LETTER 04</small>
     </div>
 
@@ -694,91 +640,59 @@ h1 {
     <h2 id="letter-title"></h2>
     <p id="letter-text"></p>
     <div class="signature">— Liam ♡</div>
-    <button class="close-btn" onclick="closeLetter()">بستن نامه</button>
+    <button class="close-btn" onclick="closeLetter()">CLOSE LETTER</button>
   </div>
 </div>
 
 <!-- LITTLE THINGS -->
 
 <section id="little" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← برگشت</button>
-
-  <div class="small-title">THE DETAILS</div>
+  <button class="back-btn" onclick="goBack()">← BACK</button>
+  <div class="eyebrow">THE DETAILS</div>
   <h1>THE LITTLE THINGS</h1>
-
-  <p class="subtitle">
-    شاید اینا چیزای خیلی بزرگی نباشن،
-    ولی برای من مهمن.
-  </p>
+  <p class="subtitle">The little things that make you, you.</p>
 
   <div class="little-list">
-
-    <div class="little-item">
-      اون صدای قشنگت که حتی وقتی حواسم جای دیگه‌ست، بازم دلم می‌خواد بشنومش.
-    </div>
-
-    <div class="little-item">
-      اون اخلاق خاصت که یه وقتایی سرد و مغروری و یه وقتایی انقدر دوست‌داشتنی می‌شی که نمی‌دونم چی بگم.
-    </div>
-
-    <div class="little-item">
-      اینکه همیشه یه جور خاصی توی ذهنمی، حتی وقتایی که اصلاً حرفی بینمون رد و بدل نمی‌شه.
-    </div>
-
-    <div class="little-item">
-      اینکه مستقل و قوی‌ای و برای خودت شخصیت و دنیای خودتو داری.
-    </div>
-
-    <div class="little-item">
-      و اینکه با همه‌ی اینا، هنوزم کلی چیز کوچیک ازت هست که دوست دارم بیشتر بشناسمشون.
-    </div>
-
+    <div class="little-item">اون صدای قشنگت که حتی وقتی حواسم جای دیگه‌ست، بازم دلم می‌خواد بشنومش.</div>
+    <div class="little-item">اون اخلاق خاصت که یه وقتایی سرد و مغروری و یه وقتایی انقدر دوست‌داشتنی می‌شی که نمی‌دونم چی بگم.</div>
+    <div class="little-item">اینکه همیشه یه جور خاصی توی ذهنمی، حتی وقتایی که اصلاً حرفی بینمون رد و بدل نمی‌شه.</div>
+    <div class="little-item">اینکه مستقل و قوی‌ای و برای خودت شخصیت و دنیای خودتو داری.</div>
+    <div class="little-item">و اینکه با همه‌ی اینا، هنوزم کلی چیز کوچیک ازت هست که دوست دارم بیشتر بشناسمشون.</div>
   </div>
 </section>
 
 <!-- FINAL GIFT -->
 
 <section id="final" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← برگشت</button>
-
-  <div class="small-title">ONE LAST THING</div>
+  <button class="back-btn" onclick="goBack()">← BACK</button>
+  <div class="eyebrow">ONE LAST THING</div>
   <h1>THE FINAL GIFT</h1>
 
   <div class="final-box">
     <div class="big-heart">♡</div>
-
     <p>
       تولدت مبارک یورام.
-      <br><br>
 
       امیدوارم امسال برات پر از اتفاقای خوب باشه.
       از اون روزایی که آخرش با رضایت بخوابی و با خیال راحت بگی امروز روز خوبی بود.
-      <br><br>
 
       نمی‌خوام برات کلی جمله‌ی قشنگ و تکراری ردیف کنم.
       فقط می‌خوام بدونی که بودنت برام مهمه و از اینکه توی دنیای منی خوشحالم.
-      <br><br>
 
       امیدوارم همیشه همون‌قدر که لیاقتش رو داری خوشحال باشی.
-      <br><br>
 
-      تولدت مبارک، نازنینم.
-      <br>
-      ♡
+      تولدت مبارک، نازنینم. ♡
     </p>
   </div>
 </section>
 
-<!-- PHOTO MODAL -->
+<!-- PHOTO VIEWER -->
 
 <div id="photo-modal" class="photo-modal hidden" onclick="closePhoto()">
-  <img id="big-photo" src="" alt="Photo">
+  <img id="big-photo" src="" alt="Memory">
 </div>
 
 <script>
-
-/* PASSWORD */
-
 const secret = "27/7/2026";
 
 function enterSite() {
@@ -788,11 +702,13 @@ function enterSite() {
     document.getElementById("login").classList.add("hidden");
     document.getElementById("hall").classList.remove("hidden");
   } else {
-    document.getElementById("error").textContent = "رمز اشتباهه. دوباره امتحان کن.";
+    document.getElementById("error").textContent = "Wrong password. Try again.";
   }
 }
 
-/* OPEN ROOMS */
+document.getElementById("password").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") enterSite();
+});
 
 function openRoom(id) {
   document.getElementById("hall").classList.add("hidden");
@@ -811,19 +727,15 @@ function goBack() {
   });
 
   document.getElementById("hall").classList.remove("hidden");
-
   closeLetter();
   closePhoto();
-
   window.scrollTo(0, 0);
 }
-
-/* LETTER CONTENT */
 
 const letters = [
   {
     title: "چیزی که توی تو دوست دارم",
-    text: `نمی‌دونم از کجا شروع کنم، ولی فکر کنم چیزی که بیشتر از همه تو رو برام خاص می‌کنه، خودِ شخصیتته.
+    text: `نمی‌دونم از کجا شروع کنم، ولی فکر کنم چیزی که بیشتر از همه تو رو برام خاص می‌کنه، خود شخصیتته.
 
 همون اخلاق خاصت، اون وقتایی که سرد می‌شی و یه کم غرورت رو میاری وسط، ولی بازم یه جوری دوست‌داشتنی می‌مونی که نمی‌شه ازت دلخور موند.
 
@@ -880,27 +792,19 @@ const letters = [
   }
 ];
 
-/* OPEN LETTER */
-
 function openLetter(index) {
   const cards = document.querySelectorAll(".letter-card");
 
   cards.forEach(card => card.classList.remove("opening"));
-
   cards[index].classList.add("opening");
 
-  document.getElementById("letter-title").textContent =
-    letters[index].title;
-
-  document.getElementById("letter-text").textContent =
-    letters[index].text;
+  document.getElementById("letter-title").textContent = letters[index].title;
+  document.getElementById("letter-text").textContent = letters[index].text;
 
   setTimeout(() => {
     document.getElementById("letter-modal").classList.remove("hidden");
   }, 450);
 }
-
-/* CLOSE LETTER */
 
 function closeLetter() {
   document.getElementById("letter-modal").classList.add("hidden");
@@ -910,11 +814,8 @@ function closeLetter() {
   });
 }
 
-/* PHOTO VIEWER */
-
 function showPhoto(element) {
   const image = element.querySelector("img");
-
   document.getElementById("big-photo").src = image.src;
   document.getElementById("photo-modal").classList.remove("hidden");
 }
@@ -922,7 +823,6 @@ function showPhoto(element) {
 function closePhoto() {
   document.getElementById("photo-modal").classList.add("hidden");
 }
-
 </script>
 
 </body>
