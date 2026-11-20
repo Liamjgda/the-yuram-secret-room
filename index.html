@@ -6,93 +6,40 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yuram's Secret Room</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Vazirmatn:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --bg: #09080b;
+  --panel: #151117;
+  --pink: #c58b9f;
+  --light: #ead8df;
+  --silver: #aaa5b0;
+  --muted: #77717d;
 }
 
-:root {
-  --bg: #100d12;
-  --panel: #1d1720;
-  --pink: #c49aaf;
-  --soft: #e9dce4;
-  --muted: #988995;
-  --border: #594352;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background: var(--bg);
-  color: var(--soft);
+  color: var(--light);
   font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.hidden { display: none !important; }
-
-button, input { font-family: inherit; }
-button { cursor: pointer; }
-
-.page {
-  min-height: 100vh;
-  padding: 35px 20px 65px;
-  text-align: center;
+button {
+  font-family: inherit;
+  cursor: pointer;
 }
 
-.eyebrow {
-  color: var(--pink);
-  font-size: 10px;
-  letter-spacing: 5px;
-  margin-bottom: 18px;
-  text-transform: uppercase;
+.hidden {
+  display: none !important;
 }
-
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 39px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  color: #f1e5ec;
-}
-
-.subtitle {
-  max-width: 430px;
-  margin: 15px auto;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 2;
-}
-
-.main-btn {
-  background: #704d63;
-  border: 1px solid #a77e98;
-  color: white;
-  padding: 12px 35px;
-  margin-top: 25px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  border-radius: 2px;
-}
-
-.main-btn:hover { background: #8b647d; }
-
-.back-btn {
-  display: block;
-  margin: 0 auto 40px;
-  background: transparent;
-  color: var(--pink);
-  border: 1px solid var(--border);
-  padding: 9px 23px;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-/* LOGIN */
 
 #login {
   min-height: 100vh;
@@ -101,442 +48,499 @@ h1 {
   justify-content: center;
   padding: 25px;
   text-align: center;
+  background:
+    radial-gradient(circle at 50% 40%, #38202e 0%, #100d13 45%, #09080b 80%);
 }
 
 .login-box {
   width: 100%;
-  max-width: 380px;
-  padding: 45px 25px;
-  background: var(--panel);
-  border: 1px solid var(--border);
+  max-width: 430px;
 }
 
-.login-heart {
-  font-size: 35px;
+.small-label {
   color: var(--pink);
-  margin-bottom: 20px;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 25px;
+}
+
+.login-box h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(45px, 12vw, 70px);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.login-box p {
+  color: var(--silver);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 35px;
 }
 
 .login-box input {
-  display: block;
   width: 100%;
-  margin-top: 25px;
-  padding: 13px;
-  background: #100d12;
+  padding: 15px;
+  background: #171219;
+  border: 1px solid #51404c;
   color: white;
-  border: 1px solid var(--border);
-  text-align: center;
   outline: none;
-  font-size: 13px;
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
 }
 
-#error {
-  color: #d58d9f;
-  font-size: 11px;
-  margin-top: 12px;
-}
-
-/* HALL */
-
-.hall-grid {
-  max-width: 650px;
-  margin: 55px auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-.door {
-  min-height: 170px;
-  background: linear-gradient(145deg, #291e2b, #17121a);
-  border: 1px solid var(--border);
-  color: var(--soft);
-  padding: 25px 10px;
+.primary-btn {
+  border: 1px solid var(--pink);
+  background: transparent;
+  color: var(--light);
+  padding: 13px 28px;
+  letter-spacing: 2px;
+  font-size: 10px;
   transition: .3s;
 }
 
-.door:hover {
-  transform: translateY(-5px);
-  border-color: var(--pink);
+.primary-btn:hover {
+  background: var(--pink);
+  color: #160d13;
 }
 
-.door-icon {
-  display: block;
+#error {
+  color: #e5a0b4;
+  font-size: 11px;
+  margin-top: 15px;
+}
+
+#website {
+  min-height: 100vh;
+  padding: 30px 18px 70px;
+  background:
+    radial-gradient(ellipse at top, #24151f 0%, #0d0b10 55%, #09080b 100%);
+}
+
+.topbar {
+  max-width: 950px;
+  margin: 0 auto 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #332631;
+  padding-bottom: 17px;
+}
+
+.brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.topbar span {
   color: var(--pink);
-  font-size: 28px;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.hero {
+  text-align: center;
+  margin: 0 auto 65px;
+}
+
+.hero .eyebrow {
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 5px;
   margin-bottom: 18px;
 }
 
-.door h3 {
-  font-size: 11px;
-  letter-spacing: 2px;
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 12vw, 85px);
   font-weight: 400;
+  line-height: 1;
 }
 
-.door p {
-  color: var(--muted);
+.hero p {
+  margin-top: 20px;
+  color: var(--silver);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.rooms {
+  max-width: 850px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.room-card {
+  min-height: 175px;
+  border: 1px solid #463440;
+  background: linear-gradient(145deg, #211720, #110e14);
+  padding: 25px 18px;
+  text-align: left;
+  transition: .35s;
+  color: var(--light);
+  position: relative;
+  overflow: hidden;
+}
+
+.room-card:hover {
+  border-color: var(--pink);
+  transform: translateY(-4px);
+  background: #251923;
+}
+
+.room-number {
+  color: var(--pink);
   font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.room-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: 29px;
+  margin: 18px 0 8px;
+}
+
+.room-card p {
+  font-size: 10px;
+  color: var(--silver);
+  letter-spacing: 1px;
+}
+
+.room-card::after {
+  content: "✧";
+  position: absolute;
+  right: 18px;
+  bottom: 10px;
+  font-size: 30px;
+  color: #705365;
+}
+
+.room {
+  max-width: 850px;
+  margin: auto;
+  animation: appear .5s ease;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.back-btn {
+  color: var(--pink);
+  border: none;
+  background: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 35px;
+}
+
+.room-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.room-heading .eyebrow {
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-size: 9px;
+  margin-bottom: 13px;
+}
+
+.room-heading h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(42px, 10vw, 65px);
+}
+
+.room-heading p {
+  color: var(--silver);
+  font-size: 11px;
   margin-top: 12px;
 }
 
 /* MEMORIES */
 
-.room-content {
-  max-width: 750px;
-  margin: 40px auto;
-}
-
-.photo-grid {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-top: 35px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  max-width: 650px;
+  margin: auto;
 }
 
-.photo-card {
-  background: var(--panel);
-  padding: 9px 9px 14px;
-  border: 1px solid #493646;
-  cursor: pointer;
+.polaroid {
+  background: #e9e2e4;
+  padding: 9px 9px 25px;
+  transform: rotate(-1deg);
   transition: .3s;
 }
 
-.photo-card:hover { transform: translateY(-5px); }
-
-.photo-card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
+.polaroid:nth-child(even) {
+  transform: rotate(1.5deg);
 }
 
-.photo-card p {
-  color: var(--pink);
-  font-size: 10px;
-  margin-top: 12px;
-  letter-spacing: 1px;
+.polaroid:hover {
+  transform: rotate(0) scale(1.025);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #29212a;
+}
+
+.polaroid p {
+  color: #352731;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  font-size: 18px;
+  padding-top: 10px;
 }
 
 /* UNSAID */
 
 .letters {
-  width: 100%;
-  max-width: 520px;
-  margin: 50px auto 20px;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 45px 20px;
-}
-
-.letter-card {
-  cursor: pointer;
-  animation: appear .7s ease both;
-}
-
-.letter-card:nth-child(2) { animation-delay: .1s; }
-.letter-card:nth-child(3) { animation-delay: .2s; }
-.letter-card:nth-child(4) { animation-delay: .3s; }
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  gap: 18px;
 }
 
 .envelope {
-  position: relative;
-  width: 100%;
-  max-width: 205px;
-  height: 125px;
-  margin: auto;
-  background: #594052;
-  border: 1px solid #a17a91;
-  overflow: hidden;
-  box-shadow: 0 10px 25px #0006;
+  min-height: 175px;
+  background: linear-gradient(145deg, #261b25, #171119);
+  border: 1px solid #695061;
+  color: var(--light);
+  padding: 25px 12px;
+  text-align: center;
   transition: .3s;
 }
 
-.letter-card:hover .envelope { transform: translateY(-7px); }
-
-.envelope-back {
-  position: absolute;
-  inset: 0;
-  background: #76536b;
+.envelope:hover {
+  border-color: var(--pink);
+  transform: translateY(-4px);
 }
 
-.envelope-paper {
-  position: absolute;
-  width: 80%;
-  height: 85%;
-  left: 10%;
-  top: 7%;
-  background: #f0e5eb;
-  z-index: 2;
-  transition: .6s;
-}
-
-.envelope-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75%;
-  background: #a77e98;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transform-origin: top;
-  transition: transform .65s ease;
-  z-index: 4;
-}
-
-.envelope-front {
-  position: absolute;
-  inset: 0;
-  background: #68485f;
-  clip-path: polygon(0 100%, 0 35%, 50% 75%, 100% 35%, 100% 100%);
-  z-index: 3;
-}
-
-.envelope-heart {
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #f5dce9;
-  font-size: 23px;
-  z-index: 5;
-}
-
-.letter-card.opening .envelope-flap { transform: rotateX(180deg); }
-.letter-card.opening .envelope-paper { transform: translateY(-35px); }
-
-.letter-card h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  color: #e7c9d9;
-  margin-top: 16px;
-  font-weight: 400;
-}
-
-.letter-card small {
+.envelope .symbol {
   display: block;
-  color: var(--muted);
-  font-size: 9px;
-  margin-top: 6px;
-  letter-spacing: 3px;
+  color: var(--pink);
+  font-size: 30px;
+  margin-bottom: 15px;
 }
 
-/* LETTER MODAL */
-
-.letter-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: #08060bf0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-}
-
-.letter-inside {
-  width: 100%;
-  max-width: 470px;
-  max-height: 85vh;
-  overflow-y: auto;
-  background: #211923;
-  border: 1px solid #79576d;
-  padding: 30px 24px;
-  text-align: right;
-  animation: letterOpen .5s ease;
-}
-
-@keyframes letterOpen {
-  from { opacity: 0; transform: translateY(25px) scale(.96); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.letter-inside h2 {
+.envelope h3 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 25px;
-  color: #d9aec5;
   font-weight: 400;
-  margin-bottom: 22px;
+}
+
+.envelope small {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 2px;
+  display: block;
+  margin-top: 9px;
+}
+
+.letter-content {
+  max-width: 620px;
+  margin: 35px auto 0;
+  padding: 30px 24px;
+  background: #1b141c;
+  border: 1px solid #5a4050;
   text-align: center;
 }
 
-.letter-inside p {
+.letter-content h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--pink);
+  margin-bottom: 25px;
+}
+
+.persian {
   font-family: 'Vazirmatn', sans-serif;
   direction: rtl;
   text-align: right;
-  color: #e4d7df;
-  font-size: 13px;
-  line-height: 2.7;
-  white-space: pre-line;
+  line-height: 2.5;
+  font-size: 14px;
+  color: #e8dce2;
 }
 
-.signature {
-  text-align: left;
-  color: var(--pink);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
+.close-letter {
   margin-top: 25px;
-  direction: ltr;
 }
 
-.close-btn {
-  display: block;
-  margin: 25px auto 0;
-  border: 1px solid #79576d;
-  color: #e4c5d6;
-  background: transparent;
-  padding: 9px 25px;
-  font-size: 10px;
-  letter-spacing: 2px;
+/* LITTLE THINGS */
+
+.little-intro {
+  text-align: center;
+  color: var(--silver);
+  font-size: 12px;
+  line-height: 2;
+  margin: -15px auto 30px;
 }
 
-/* LITTLE THINGS - PUZZLE */
-
-.puzzle-area {
+.puzzle-wrap {
   max-width: 390px;
-  margin: 35px auto;
-  padding: 22px 16px;
-  background: linear-gradient(145deg, #211923, #17121a);
-  border: 1px solid #594352;
+  margin: auto;
+  padding: 15px;
+  border: 1px solid #493541;
+  background: #171219;
 }
 
-.puzzle-frame {
-  width: 100%;
-  max-width: 330px;
-  margin: 0 auto;
-  padding: 5px;
-  background: #302332;
-  border: 1px solid #98758b;
-}
-
-.puzzle-grid {
+.puzzle {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   width: 100%;
   aspect-ratio: 1;
+  background: #2b202b;
 }
 
-.puzzle-tile {
-  min-width: 0;
-  min-height: 0;
-  border: 1px solid #76566d;
-  border-radius: 1px;
+.tile {
+  position: relative;
+  border: none;
+  background-image: url("file_000000009ed48246bce90797ba59e558.webp");
   background-repeat: no-repeat;
   background-size: 300% 300%;
-  background-color: #352536;
-  padding: 0;
-  transition: filter .15s, transform .15s;
+  cursor: pointer;
+  min-width: 0;
 }
 
-.puzzle-tile:not(.empty):active {
-  filter: brightness(1.25);
-  transform: scale(.97);
-}
-
-.puzzle-tile.empty {
-  background: #100d12;
-  border: 1px dashed #594352;
+.tile.empty {
+  background: #0e0b10;
+  border: 1px dashed #493541;
   cursor: default;
 }
 
-.puzzle-info {
+.puzzle-controls {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 20px 4px 0;
-  color: var(--muted);
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.puzzle-controls span {
   font-size: 10px;
-  letter-spacing: 1px;
+  color: var(--silver);
 }
 
-.puzzle-info strong {
-  color: #e7c9d9;
-  font-weight: 400;
+#moves {
+  color: var(--pink);
 }
 
-.puzzle-message {
-  min-height: 44px;
-  margin-top: 18px;
-  color: #e7c9d9;
-  font-size: 11px;
+#win-message {
+  text-align: center;
+  color: var(--pink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.little-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.note {
+  background: #1b141c;
+  border: 1px solid #3c2b39;
+  padding: 20px 12px;
+  text-align: center;
+  min-height: 95px;
+  color: var(--light);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 12px;
+  direction: rtl;
   line-height: 2;
 }
 
-.puzzle-button {
-  background: transparent;
+/* FINAL GIFT */
+
+.final-card {
+  max-width: 620px;
+  margin: auto;
+  border: 1px solid #604759;
+  background: linear-gradient(145deg, #241722, #120e15);
+  padding: 40px 25px;
+  text-align: center;
+}
+
+.final-card .star {
+  font-size: 35px;
   color: var(--pink);
-  border: 1px solid #79576d;
-  padding: 11px 25px;
-  margin-top: 12px;
-  font-size: 10px;
-  letter-spacing: 2px;
-  transition: .2s;
-}
-
-.puzzle-button:hover {
-  background: #493346;
-}
-
-.puzzle-hint {
-  margin-top: 18px;
-  color: var(--muted);
-  font-size: 9px;
-  line-height: 2;
-}
-
-/* FINAL */
-
-.final-box {
-  max-width: 480px;
-  margin: 45px auto;
-  padding: 35px 25px;
-  background: linear-gradient(145deg, #291d2a, #17121a);
-  border: 1px solid #735267;
-}
-
-.final-box .big-heart {
-  color: var(--pink);
-  font-size: 42px;
   margin-bottom: 20px;
 }
 
-.final-box p {
-  font-family: 'Vazirmatn', sans-serif;
-  direction: rtl;
-  font-size: 13px;
-  line-height: 2.8;
-  color: #e6d6df;
-  text-align: right;
+.final-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 39px;
+  margin-bottom: 25px;
 }
 
-/* PHOTO MODAL */
-
-.photo-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: #08060bf2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
+.final-card .persian {
+  text-align: center;
 }
 
-.photo-modal img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  border: 1px solid #79576d;
+.signature {
+  color: var(--pink);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 25px;
+  margin-top: 30px;
 }
 
-@media(max-width: 380px) {
-  .envelope { height: 105px; }
-  .letter-card h3 { font-size: 16px; }
-  .photo-card img { height: 145px; }
-  h1 { font-size: 33px; }
+.footer {
+  text-align: center;
+  color: #6c5c69;
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-top: 75px;
+}
+
+@media (max-width: 520px) {
+  .rooms {
+    gap: 10px;
+  }
+
+  .room-card {
+    min-height: 155px;
+    padding: 18px 12px;
+  }
+
+  .room-card h2 {
+    font-size: 23px;
+  }
+
+  .gallery {
+    gap: 13px;
+  }
+
+  .letters {
+    gap: 10px;
+  }
+
+  .envelope {
+    min-height: 150px;
+    padding: 20px 8px;
+  }
+
+  .envelope h3 {
+    font-size: 21px;
+  }
 }
 </style>
 </head>
@@ -547,467 +551,438 @@ h1 {
 
 <section id="login">
   <div class="login-box">
-    <div class="login-heart">♡</div>
-    <div class="eyebrow">A PRIVATE PLACE</div>
-    <h1>Welcome, Yuram</h1>
-    <p class="subtitle">A little world made just for you.</p>
-    <input id="password" type="password" placeholder="Enter password">
-    <button class="main-btn" onclick="enterSite()">ENTER</button>
-    <p id="error"></p>
+    <div class="small-label">A PRIVATE LITTLE WORLD</div>
+    <h1>Yuram's Secret Room</h1>
+    <p>Some things are only meant for you.</p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter the password"
+    >
+
+    <button class="primary-btn" onclick="enterSite()">
+      OPEN THE DOOR
+    </button>
+
+    <div id="error"></div>
   </div>
 </section>
 
-<!-- HALL -->
+<!-- MAIN WEBSITE -->
 
-<section id="hall" class="page hidden">
-  <div class="eyebrow">YURAM'S PRIVATE WORLD</div>
-  <h1>Your Little World</h1>
-  <p class="subtitle">Four doors. Four little pieces of my heart.</p>
+<main id="website" class="hidden">
 
-  <div class="hall-grid">
-    <button class="door" onclick="openRoom('memories')">
-      <span class="door-icon">♡</span>
-      <h3>THE MEMORIES</h3>
-      <p>Little moments, forever kept.</p>
-    </button>
+  <header class="topbar">
+    <div class="brand">For Y.</div>
+    <span>MADE WITH LOVE</span>
+  </header>
 
-    <button class="door" onclick="openRoom('unsaid')">
-      <span class="door-icon">✉</span>
-      <h3>THE UNSAID</h3>
-      <p>Words I never said.</p>
-    </button>
+  <section id="home">
+    <div class="hero">
+      <div class="eyebrow">A LITTLE PLACE FOR YOU</div>
+      <h1>Welcome, Yuram.</h1>
+      <p>I made a little world, and every corner of it is yours.</p>
+    </div>
 
-    <button class="door" onclick="openRoom('little')">
-      <span class="door-icon">✧</span>
-      <h3>THE LITTLE THINGS</h3>
-      <p>A little puzzle for you.</p>
-    </button>
+    <div class="rooms">
 
-    <button class="door" onclick="openRoom('final')">
-      <span class="door-icon">♥</span>
-      <h3>THE FINAL GIFT</h3>
-      <p>Something just for you.</p>
-    </button>
-  </div>
-</section>
+      <button class="room-card" onclick="openRoom('memories')">
+        <span class="room-number">01</span>
+        <h2>THE MEMORIES</h2>
+        <p>A few moments worth keeping.</p>
+      </button>
 
-<!-- MEMORIES -->
+      <button class="room-card" onclick="openRoom('unsaid')">
+        <span class="room-number">02</span>
+        <h2>THE UNSAID</h2>
+        <p>Things I don't always know how to say.</p>
+      </button>
 
-<section id="memories" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← BACK</button>
-  <div class="eyebrow">OUR LITTLE WORLD</div>
-  <h1>THE MEMORIES</h1>
-  <p class="subtitle">Some moments deserve to stay forever.</p>
+      <button class="room-card" onclick="openRoom('little')">
+        <span class="room-number">03</span>
+        <h2>THE LITTLE THINGS</h2>
+        <p>It's always the little things.</p>
+      </button>
 
-  <div class="room-content">
-    <div class="photo-grid">
-      <div class="photo-card" onclick="showPhoto(this)">
+      <button class="room-card" onclick="openRoom('final')">
+        <span class="room-number">04</span>
+        <h2>THE FINAL GIFT</h2>
+        <p>One last thing, just for you.</p>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- MEMORIES ROOM -->
+
+  <section id="memories" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 01</div>
+      <h2>The Memories</h2>
+      <p>Little moments that mean a lot.</p>
+    </div>
+
+    <div class="gallery">
+
+      <div class="polaroid">
         <img src="IMG_20261031_222640_582.jpg" alt="Memory 1">
-        <p>MEMORY 01</p>
+        <p>One of my favorites.</p>
       </div>
 
-      <div class="photo-card" onclick="showPhoto(this)">
+      <div class="polaroid">
         <img src="IMG_20261022_223537_551.jpg" alt="Memory 2">
-        <p>MEMORY 02</p>
+        <p>A moment to keep.</p>
       </div>
 
-      <div class="photo-card" onclick="showPhoto(this)">
+      <div class="polaroid">
         <img src="IMG_20261022_175423_214.jpg" alt="Memory 3">
-        <p>MEMORY 03</p>
+        <p>Just us.</p>
       </div>
 
-      <div class="photo-card" onclick="showPhoto(this)">
+      <div class="polaroid">
         <img src="IMG_20261021_191011_709.jpg" alt="Memory 4">
-        <p>MEMORY 04</p>
+        <p>And another little memory.</p>
       </div>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- THE UNSAID -->
+  <!-- UNSAID ROOM -->
 
-<section id="unsaid" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← BACK</button>
-  <div class="eyebrow">WORDS I KEPT TO MYSELF</div>
-  <h1>THE UNSAID</h1>
-  <p class="subtitle">Some things are easier to write than to say.</p>
+  <section id="unsaid" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
-  <div class="letters">
-
-    <div class="letter-card" onclick="openLetter(0)">
-      <div class="envelope">
-        <div class="envelope-back"></div>
-        <div class="envelope-paper"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-heart">♡</div>
-      </div>
-      <h3>What I Love About You</h3>
-      <small>LETTER 01</small>
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 02</div>
+      <h2>The Unsaid</h2>
+      <p>Open whichever letter you want.</p>
     </div>
 
-    <div class="letter-card" onclick="openLetter(1)">
-      <div class="envelope">
-        <div class="envelope-back"></div>
-        <div class="envelope-paper"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-heart">♡</div>
-      </div>
-      <h3>Things I Never Say</h3>
-      <small>LETTER 02</small>
+    <div class="letters">
+
+      <button class="envelope" onclick="openLetter(0)">
+        <span class="symbol">✉</span>
+        <h3>Something I never said</h3>
+        <small>LETTER NO. 01</small>
+      </button>
+
+      <button class="envelope" onclick="openLetter(1)">
+        <span class="symbol">✉</span>
+        <h3>When I think of you</h3>
+        <small>LETTER NO. 02</small>
+      </button>
+
+      <button class="envelope" onclick="openLetter(2)">
+        <span class="symbol">✉</span>
+        <h3>A little confession</h3>
+        <small>LETTER NO. 03</small>
+      </button>
+
+      <button class="envelope" onclick="openLetter(3)">
+        <span class="symbol">✉</span>
+        <h3>Just because</h3>
+        <small>LETTER NO. 04</small>
+      </button>
+
     </div>
 
-    <div class="letter-card" onclick="openLetter(2)">
-      <div class="envelope">
-        <div class="envelope-back"></div>
-        <div class="envelope-paper"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-heart">♡</div>
-      </div>
-      <h3>A Little Confession</h3>
-      <small>LETTER 03</small>
+    <div id="letter-content" class="letter-content hidden">
+      <h3 id="letter-title"></h3>
+      <div id="letter-text" class="persian"></div>
+
+      <button class="primary-btn close-letter" onclick="closeLetter()">
+        CLOSE LETTER
+      </button>
+    </div>
+  </section>
+
+  <!-- LITTLE THINGS ROOM -->
+
+  <section id="little" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 03</div>
+      <h2>The Little Things</h2>
+      <p>A little game, made for you.</p>
     </div>
 
-    <div class="letter-card" onclick="openLetter(3)">
-      <div class="envelope">
-        <div class="envelope-back"></div>
-        <div class="envelope-paper"></div>
-        <div class="envelope-flap"></div>
-        <div class="envelope-front"></div>
-        <div class="envelope-heart">♡</div>
-      </div>
-      <h3>On Your Birthday</h3>
-      <small>LETTER 04</small>
-    </div>
-
-  </div>
-</section>
-
-<!-- LETTER MODAL -->
-
-<div id="letter-modal" class="letter-modal hidden">
-  <div class="letter-inside">
-    <h2 id="letter-title"></h2>
-    <p id="letter-text"></p>
-    <div class="signature">— Liam ♡</div>
-    <button class="close-btn" onclick="closeLetter()">CLOSE LETTER</button>
-  </div>
-</div>
-
-<!-- LITTLE THINGS PUZZLE -->
-
-<section id="little" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← BACK</button>
-
-  <div class="eyebrow">A LITTLE CHALLENGE</div>
-  <h1>THE LITTLE THINGS</h1>
-  <p class="subtitle">A little piece of us, waiting to be put together.</p>
-
-  <div class="puzzle-area">
-    <div class="puzzle-frame">
-      <div id="puzzle-grid" class="puzzle-grid"></div>
-    </div>
-
-    <div class="puzzle-info">
-      <span>MOVES: <strong id="move-count">0</strong></span>
-      <span>PUZZLE 01 / 01</span>
-    </div>
-
-    <p id="puzzle-message" class="puzzle-message">
-      Put the little pieces back together.
+    <p class="little-intro">
+      Put the pieces back together.<br>
+      Maybe you'll recognize the picture.
     </p>
 
-    <button class="puzzle-button" onclick="shufflePuzzle()">
-      SHUFFLE AGAIN
-    </button>
+    <div class="puzzle-wrap">
+      <div class="puzzle" id="puzzle"></div>
 
-    <p class="puzzle-hint">
-      Tap a tile next to the empty space to move it.
-    </p>
-  </div>
-</section>
+      <div class="puzzle-controls">
+        <span>Moves: <b id="moves">0</b></span>
+        <button class="primary-btn" onclick="shufflePuzzle()">
+          SHUFFLE
+        </button>
+      </div>
 
-<!-- FINAL GIFT -->
+      <div id="win-message" class="hidden">
+        You did it. ♡
+      </div>
+    </div>
 
-<section id="final" class="page room hidden">
-  <button class="back-btn" onclick="goBack()">← BACK</button>
-  <div class="eyebrow">ONE LAST THING</div>
-  <h1>THE FINAL GIFT</h1>
+    <div class="little-notes">
+      <div class="note">همین که هستی، خودش قشنگه.</div>
+      <div class="note">صدات یکی از چیزاییه که هیچ‌وقت تکراری نمیشه.</div>
+      <div class="note">حتی وقتایی که سرد میشی، باز هم دوست‌داشتنی‌ای.</div>
+      <div class="note">بین این همه آدم، انتخاب من هنوز تویی.</div>
+    </div>
+  </section>
 
-  <div class="final-box">
-    <div class="big-heart">♡</div>
-    <p>
-      تولدت مبارک یورام.
+  <!-- FINAL GIFT ROOM -->
 
-      امیدوارم امسال برات پر از اتفاقای خوب باشه.
-      از اون روزایی که آخرش با رضایت بخوابی و با خیال راحت بگی امروز روز خوبی بود.
+  <section id="final" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
-      نمی‌خوام برات کلی جمله‌ی قشنگ و تکراری ردیف کنم.
-      فقط می‌خوام بدونی که بودنت برام مهمه و از اینکه توی دنیای منی خوشحالم.
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 04</div>
+      <h2>The Final Gift</h2>
+      <p>There's something I wanted you to know.</p>
+    </div>
 
-      امیدوارم همیشه همون‌قدر که لیاقتش رو داری خوشحال باشی.
+    <div class="final-card">
+      <div class="star">✧</div>
 
-      تولدت مبارک، نازنینم. ♡
-    </p>
-  </div>
-</section>
+      <h3>Happy Birthday.</h3>
 
-<!-- PHOTO VIEWER -->
+      <div class="persian">
+        <p>
+          تولدت مبارک قشنگ من.
+          <br>
+          نمی‌دونم چقدر تونستم چیزی که توی ذهنم بود رو بسازم،
+          ولی دلم می‌خواست یه چیزی داشته باشی که فقط برای خودت باشه.
+          <br><br>
+          شاید نتونم همیشه همه‌چیز رو درست بگم،
+          شاید بعضی وقتا بلد نباشم اون‌طوری که باید نشون بدم،
+          ولی اینو بدون که بودنت برای من فرق داره.
+          <br><br>
+          امیدوارم امسال برات پر از اتفاقای خوب باشه،
+          از اونایی که وقتی بهشون فکر می‌کنی ناخودآگاه لبخند بزنی.
+          <br><br>
+          مراقب خودت باش، چون تو برای من خیلی عزیزی.
+        </p>
+      </div>
 
-<div id="photo-modal" class="photo-modal hidden" onclick="closePhoto()">
-  <img id="big-photo" src="" alt="Memory">
-</div>
+      <div class="signature">Always, Liam.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    MADE FOR ONE PERSON · 27
+  </footer>
+
+</main>
 
 <script>
-const secret = "27/7/2026";
+
+/* PASSWORD */
 
 function enterSite() {
-  const value = document.getElementById("password").value;
+  const password = document.getElementById("password").value;
 
-  if (value === secret) {
+  if (password === "27/7/2026") {
     document.getElementById("login").classList.add("hidden");
-    document.getElementById("hall").classList.remove("hidden");
+    document.getElementById("website").classList.remove("hidden");
   } else {
-    document.getElementById("error").textContent = "Wrong password. Try again.";
+    document.getElementById("error").textContent = "That's not the right password.";
   }
 }
 
-document.getElementById("password").addEventListener("keydown", function(event) {
-  if (event.key === "Enter") enterSite();
+document.getElementById("password").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") enterSite();
 });
 
-function openRoom(id) {
-  document.getElementById("hall").classList.add("hidden");
 
-  document.querySelectorAll(".room").forEach(room => {
-    room.classList.add("hidden");
+/* ROOM NAVIGATION */
+
+const roomIds = ["memories", "unsaid", "little", "final"];
+
+function openRoom(room) {
+  document.getElementById("home").classList.add("hidden");
+
+  roomIds.forEach(id => {
+    document.getElementById(id).classList.add("hidden");
   });
 
-  document.getElementById(id).classList.remove("hidden");
-  window.scrollTo(0, 0);
+  document.getElementById(room).classList.remove("hidden");
 
-  if (id === "little") {
-    if (!puzzleStarted) {
-      shufflePuzzle();
-      puzzleStarted = true;
-    }
+  if (room === "little" && !puzzleStarted) {
+    shufflePuzzle();
+    puzzleStarted = true;
   }
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function goBack() {
-  document.querySelectorAll(".room").forEach(room => {
-    room.classList.add("hidden");
+function goHome() {
+  roomIds.forEach(id => {
+    document.getElementById(id).classList.add("hidden");
   });
 
-  document.getElementById("hall").classList.remove("hidden");
+  document.getElementById("home").classList.remove("hidden");
+
   closeLetter();
-  closePhoto();
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 
 /* LETTERS */
 
 const letters = [
   {
-    title: "چیزی که توی تو دوست دارم",
-    text: `نمی‌دونم از کجا شروع کنم، ولی فکر کنم چیزی که بیشتر از همه تو رو برام خاص می‌کنه، خود شخصیتته.
-
-همون اخلاق خاصت، اون وقتایی که سرد می‌شی و یه کم غرورت رو میاری وسط، ولی بازم یه جوری دوست‌داشتنی می‌مونی که نمی‌شه ازت دلخور موند.
-
-صدات، طرز حرف زدنت، مستقل بودنت و حتی اون ریزه‌کاری‌هایی که شاید خودت اصلاً بهشون توجه نکنی.
-
-من خیلی از چیزای تو رو دوست دارم، حتی بعضی چیزایی که شاید خودت فکر کنی دوست‌داشتنی نیستن.
-
-خلاصه که نمی‌خوام عوضت کنم. همین آدمی که هستی برام عزیزی.`
+    title: "Something I never said",
+    text: `گاهی یه سری چیزا هست که گفتنشون برام آسون نیست.
+ولی این معنی‌ش این نیست که حسشون نمی‌کنم.
+شاید خیلی وقتا از کنار حرفا ساده رد بشم یا نتونم درست توضیح بدم توی دلم چی می‌گذره.
+اما تو از اون آدمایی هستی که حضورشون واقعاً برام مهمه.
+حتی بیشتر از چیزی که احتمالاً نشون میدم.`
   },
-
   {
-    title: "چیزایی که بهت نمی‌گم",
-    text: `خیلی وقتا حرفایی توی ذهنمه که آخرش هیچ‌کدومشون رو بهت نمی‌گم.
-
-مثلاً اینکه بعضی وقتا بی‌دلیل یاد تو می‌افتم، یا اینکه یه اتفاق کوچیک می‌افته و اولین کسی که دلم می‌خواد براش تعریفش کنم تویی.
-
-شاید همیشه بلد نباشم نشون بدم چقدر برام مهمی، ولی این به معنی کم بودن حسم نیست.
-
-بعضی وقتا فقط نگاه می‌کنم و توی دلم کلی حرف دارم که نمی‌دونم چطوری باید بیانشون کنم.
-
-کاش گاهی بدون اینکه چیزی بگم، خودت بفهمی چقدر توی ذهن و دلم جا داری.`
+    title: "When I think of you",
+    text: `بعضی وقتا وسط شلوغ‌ترین روزم یهو یاد تو می‌افتم.
+یه حرفت، یه رفتارت، یه چیزی که شاید خودت حتی یادت نباشه.
+بعد می‌بینم چقدر راحت می‌تونی حالمو عوض کنی.
+نمی‌دونم چطوری، ولی توی ذهن من همیشه یه جای مخصوص داری.`
   },
-
   {
-    title: "یه اعتراف کوچیک",
-    text: `خب، یه چیزی رو اعتراف کنم؟
-
-من خیلی بیشتر از چیزی که نشون می‌دم بهت حساسم.
-
-گاهی روی چیزای کوچیک هم حسودیم می‌شه، گاهی دلم توجهت رو می‌خواد و گاهی حتی وقتی چیزی نمی‌گم، کلی حرف توی دلم جمع می‌شه.
-
-شاید همیشه بهترین واکنش رو نداشته باشم یا نتونم درست توضیح بدم چی توی ذهنمه.
-
-ولی یه چیزی رو مطمئنم؛ تو برام یه آدم معمولی نیستی.
-
-من به بودنت عادت نکردم که راحت از کنارش رد بشم. هنوزم برام مهمی، حتی توی روزای معمولی و بی‌اتفاق.`
+    title: "A little confession",
+    text: `راستش من همیشه اون‌قدری که توی دلم می‌گذره رو نشون نمی‌دم.
+گاهی حتی خودمم نمی‌دونم چطوری باید بیانش کنم.
+ولی اگه یه چیزی رو بخوام مطمئن بهت بگم، اینه که تو برام معمولی نیستی.
+من تو رو با همه‌ی اخلاقای خاصت دوست دارم؛ حتی اون وقتایی که یکم لجباز و سرد میشی.`
   },
-
   {
-    title: "برای روز تولدت",
-    text: `یورام، تولدت مبارک.
-
-نمی‌دونم این نامه رو چه زمانی می‌خونی، ولی امیدوارم وقتی می‌خونیش لبخند روی لبت باشه.
-
-می‌خوام امسال بیشتر از همیشه به چیزایی که دوست داری برسی. کمتر حرص بخوری، بیشتر بخندی و آدمایی دور و برت باشن که واقعاً قدر تو رو می‌دونن.
-
-امیدوارم هیچ‌وقت مجبور نشی برای دوست‌داشتنی بودن خودت رو تغییر بدی.
-
-و یه چیز دیگه؛ ممنون که توی این مدت توی زندگی من بودی. شاید همیشه به زبون نیارم، ولی حضورت برام ارزش داره.
-
-امیدوارم کلی تولد دیگه رو با حال خوب و اتفاقای قشنگ جشن بگیری.
-
-تولدت مبارک، یورام. ♡`
+    title: "Just because",
+    text: `این نامه دلیل خاصی نداره.
+فقط دلم خواست یه جا نوشته باشم که چقدر از بودنت خوشحالم.
+از صدات، از حرف زدنت، از اون چیزای کوچیکی که شاید خودت بهشون توجه نکنی.
+امیدوارم همیشه یه دلیل برای خوشحال بودن داشته باشی.
+و امیدوارم بدونی که یکی اینجا هست که واقعاً برات ارزش قائله.`
   }
 ];
 
 function openLetter(index) {
-  const cards = document.querySelectorAll(".letter-card");
-
-  cards.forEach(card => card.classList.remove("opening"));
-  cards[index].classList.add("opening");
+  const content = document.getElementById("letter-content");
 
   document.getElementById("letter-title").textContent = letters[index].title;
   document.getElementById("letter-text").textContent = letters[index].text;
 
-  setTimeout(() => {
-    document.getElementById("letter-modal").classList.remove("hidden");
-  }, 450);
+  content.classList.remove("hidden");
+  content.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
 function closeLetter() {
-  document.getElementById("letter-modal").classList.add("hidden");
-
-  document.querySelectorAll(".letter-card").forEach(card => {
-    card.classList.remove("opening");
-  });
+  document.getElementById("letter-content").classList.add("hidden");
 }
 
-/* PHOTO VIEWER */
 
-function showPhoto(element) {
-  const image = element.querySelector("img");
-  document.getElementById("big-photo").src = image.src;
-  document.getElementById("photo-modal").classList.remove("hidden");
-}
+/* SLIDING PUZZLE */
 
-function closePhoto() {
-  document.getElementById("photo-modal").classList.add("hidden");
-}
-
-/* PUZZLE GAME */
-
-const puzzleImage = "IMG_20261016_115536_132.jpg";
-
-let puzzlePieces = [0,1,2,3,4,5,6,7,8];
-let puzzleMoves = 0;
+let puzzleTiles = [];
+let moves = 0;
 let puzzleStarted = false;
-let puzzleCompleted = false;
 
 function renderPuzzle() {
-  const grid = document.getElementById("puzzle-grid");
-  grid.innerHTML = "";
+  const puzzle = document.getElementById("puzzle");
+  puzzle.innerHTML = "";
 
-  puzzlePieces.forEach((piece, index) => {
+  puzzleTiles.forEach((piece, index) => {
     const tile = document.createElement("button");
-    tile.className = "puzzle-tile";
+    tile.className = "tile";
 
     if (piece === 8) {
       tile.classList.add("empty");
-      tile.disabled = true;
-      tile.setAttribute("aria-label", "Empty space");
     } else {
-      const x = (piece % 3) * 50;
-      const y = Math.floor(piece / 3) * 50;
+      const row = Math.floor(piece / 3);
+      const col = piece % 3;
 
-      tile.style.backgroundImage = `url("${puzzleImage}")`;
-      tile.style.backgroundPosition = `${x}% ${y}%`;
-      tile.setAttribute("aria-label", "Puzzle piece");
-      tile.addEventListener("click", () => moveTile(index));
+      tile.style.backgroundPosition =
+        `${col * 50}% ${row * 50}%`;
     }
 
-    grid.appendChild(tile);
+    tile.addEventListener("click", () => moveTile(index));
+
+    puzzle.appendChild(tile);
   });
 
-  document.getElementById("move-count").textContent = puzzleMoves;
+  document.getElementById("moves").textContent = moves;
 }
 
 function moveTile(index) {
-  if (puzzleCompleted) return;
-
-  const emptyIndex = puzzlePieces.indexOf(8);
+  const emptyIndex = puzzleTiles.indexOf(8);
 
   const row = Math.floor(index / 3);
   const col = index % 3;
+
   const emptyRow = Math.floor(emptyIndex / 3);
   const emptyCol = emptyIndex % 3;
 
-  const distance = Math.abs(row - emptyRow) + Math.abs(col - emptyCol);
+  const isNeighbor =
+    (Math.abs(row - emptyRow) === 1 && col === emptyCol) ||
+    (Math.abs(col - emptyCol) === 1 && row === emptyRow);
 
-  if (distance !== 1) return;
+  if (!isNeighbor) return;
 
-  [puzzlePieces[index], puzzlePieces[emptyIndex]] =
-  [puzzlePieces[emptyIndex], puzzlePieces[index]];
+  [puzzleTiles[index], puzzleTiles[emptyIndex]] =
+    [puzzleTiles[emptyIndex], puzzleTiles[index]];
 
-  puzzleMoves++;
+  moves++;
   renderPuzzle();
-
-  if (puzzlePieces.every((piece, i) => piece === i)) {
-    puzzleCompleted = true;
-    document.getElementById("puzzle-message").textContent =
-      "You did it! Every little piece found its place. ♡";
-  }
+  checkWin();
 }
 
 function shufflePuzzle() {
-  puzzlePieces = [0,1,2,3,4,5,6,7,8];
-  puzzleMoves = 0;
-  puzzleCompleted = false;
+  puzzleTiles = [0,1,2,3,4,5,6,7,8];
+  moves = 0;
 
   let previousEmpty = -1;
 
   for (let i = 0; i < 100; i++) {
-    const emptyIndex = puzzlePieces.indexOf(8);
-    const row = Math.floor(emptyIndex / 3);
-    const col = emptyIndex % 3;
+    const empty = puzzleTiles.indexOf(8);
+
+    const row = Math.floor(empty / 3);
+    const col = empty % 3;
 
     let neighbors = [];
 
-    if (row > 0) neighbors.push(emptyIndex - 3);
-    if (row < 2) neighbors.push(emptyIndex + 3);
-    if (col > 0) neighbors.push(emptyIndex - 1);
-    if (col < 2) neighbors.push(emptyIndex + 1);
+    if (row > 0) neighbors.push(empty - 3);
+    if (row < 2) neighbors.push(empty + 3);
+    if (col > 0) neighbors.push(empty - 1);
+    if (col < 2) neighbors.push(empty + 1);
 
-    let possible = neighbors.filter(n => n !== previousEmpty);
+    if (neighbors.length > 1 && previousEmpty !== -1) {
+      neighbors = neighbors.filter(n => n !== previousEmpty);
+    }
 
-    if (possible.length === 0) possible = neighbors;
+    const chosen = neighbors[Math.floor(Math.random() * neighbors.length)];
 
-    const chosen = possible[Math.floor(Math.random() * possible.length)];
+    previousEmpty = empty;
 
-    [puzzlePieces[emptyIndex], puzzlePieces[chosen]] =
-    [puzzlePieces[chosen], puzzlePieces[emptyIndex]];
-
-    previousEmpty = emptyIndex;
+    [puzzleTiles[empty], puzzleTiles[chosen]] =
+      [puzzleTiles[chosen], puzzleTiles[empty]];
   }
 
-  if (puzzlePieces.every((piece, i) => piece === i)) {
-    shufflePuzzle();
-    return;
-  }
-
-  document.getElementById("puzzle-message").textContent =
-    "Put the little pieces back together.";
-
+  document.getElementById("win-message").classList.add("hidden");
   renderPuzzle();
 }
+
+function checkWin() {
+  const solved = [0,1,2,3,4,5,6,7,8];
+
+  if (puzzleTiles.every((piece, index) => piece === solved[index])) {
+    document.getElementById("win-message").classList.remove("hidden");
+  }
+}
+
 </script>
 
 </body>
