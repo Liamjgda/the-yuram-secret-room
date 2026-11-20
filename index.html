@@ -4,117 +4,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Secret Room | Yuram</title>
+<title>Yuram's Secret Room</title>
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#09090c;color:#e5e5eb;
- font-family:Georgia,serif;min-height:100vh;
- display:flex;align-items:center;justify-content:center;
- text-align:center;padding:22px;
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #09080a;
+  color: #f5edf3;
+  font-family: Georgia, serif;
 }
-.container{width:100%;max-width:440px}
-.tag{color:#d68ba9;letter-spacing:5px;font-size:10px}
-h1{font-size:39px;letter-spacing:5px;font-weight:normal;margin:25px 0 12px}
-.subtitle{color:#aaa;font-size:13px;letter-spacing:2px}
-.line{width:65px;height:1px;background:#d68ba9;margin:30px auto}
-p{color:#aaa;line-height:1.8;font-size:14px}
-input{
- width:100%;background:#111116;border:1px solid #555;
- padding:16px;color:#f0d4e1;text-align:center;
- letter-spacing:4px;font-size:17px;margin:20px 0;
- outline:none;
+
+.hidden { display: none !important; }
+
+button {
+  cursor: pointer;
+  font-family: inherit;
 }
-button{
- background:transparent;border:1px solid #d68ba9;
- color:#e8b4cb;padding:14px 24px;
- letter-spacing:3px;cursor:pointer;margin:8px;
- transition:.3s;
+
+#login, #hall, .page {
+  min-height: 100vh;
+  text-align: center;
+  padding: 45px 20px;
+  background: radial-gradient(circle at top, #30202e, #09080a 70%);
 }
-button:hover{background:#d68ba9;color:#09090c}
-.hidden{display:none}
-.door{
- display:block;width:100%;margin:13px 0;
- border-color:#555;color:#ddd;letter-spacing:2px
+
+#login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.door small{display:block;color:#d68ba9;margin-top:7px}
-.message{border:1px solid #444;padding:25px;margin-top:20px}
-.back{font-size:11px;border-color:#555}
+
+.small {
+  color: #d6a1c1;
+  font-size: 11px;
+  letter-spacing: 5px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  color: #b9a9b5;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+input {
+  width: 230px;
+  padding: 13px;
+  margin: 20px 0;
+  color: white;
+  background: transparent;
+  border: 1px solid #a77c99;
+  text-align: center;
+  outline: none;
+}
+
+.main-btn {
+  border: none;
+  background: #79536f;
+  color: white;
+  padding: 13px 35px;
+  letter-spacing: 2px;
+}
+
+.rooms {
+  max-width: 650px;
+  margin: 55px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.room {
+  background: #181219;
+  color: white;
+  border: 1px solid #64475e;
+  padding: 35px 8px;
+  transition: .3s;
+}
+
+.room:hover {
+  background: #392638;
+  transform: translateY(-4px);
+}
+
+.room span {
+  display: block;
+  color: #d6a1c1;
+  font-size: 11px;
+  margin-bottom: 14px;
+  letter-spacing: 3px;
+}
+
+.back {
+  background: transparent;
+  color: #d6a1c1;
+  border: 1px solid #79536f;
+  padding: 10px 22px;
+  margin-bottom: 35px;
+}
+
+.memory-gallery {
+  max-width: 850px;
+  margin: 45px auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 18px;
+}
+
+.polaroid {
+  background: #eee8e3;
+  padding: 10px 10px 30px;
+  border: none;
+  box-shadow: 0 10px 25px #0009;
+  transform: rotate(-2deg);
+  transition: .3s;
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.polaroid:hover {
+  transform: rotate(0) scale(1.03);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  object-fit: cover;
+}
+
+.caption {
+  color: #30232c;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.room-content {
+  max-width: 600px;
+  margin: 55px auto;
+  padding: 20px;
+  line-height: 2.2;
+  color: #d0bdca;
+}
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #000e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#lightbox img {
+  max-width: 95%;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 8px solid #eee8e3;
+}
+
+#lightbox button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+@media(max-width:480px) {
+  .rooms { gap: 10px; }
+  .room { padding: 27px 5px; font-size: 12px; }
+  .memory-gallery { gap: 20px 12px; }
+}
 </style>
 </head>
-<body>
-<div class="container">
 
-<section id="entrance">
- <div class="tag">PRIVATE ACCESS / 001</div>
- <h1>SECRET ROOM</h1>
- <div class="subtitle">YURAM'S PRIVATE WORLD</div>
- <div class="line"></div>
- <p>Some places are meant for one person only.</p>
- <p>Welcome, Yuram.</p>
- <input id="password" type="password" placeholder="ENTER THE SECRET CODE">
- <button onclick="unlock()">ENTER THE ROOM</button>
- <p id="error" style="color:#e58cae"></p>
- <div class="tag" style="margin-top:35px">EST. 27 / 07 / 2026</div>
+<body>
+
+<section id="login">
+  <div class="small">A PRIVATE WORLD</div>
+  <h1>SECRET ROOM</h1>
+  <p class="subtitle">YURAM'S PRIVATE WORLD</p>
+
+  <input id="password" type="password"
+  placeholder="Enter the secret code">
+
+  <button class="main-btn" onclick="enter()">ENTER</button>
+  <p id="error" style="color:#d6a1c1"></p>
 </section>
 
 <section id="hall" class="hidden">
- <div class="tag">ACCESS GRANTED</div>
- <h1>WELCOME</h1>
- <p>You've found a little world made just for you.</p>
- <div class="line"></div>
- <button class="door" onclick="openRoom('memories')">
- THE MEMORIES <small>01 / moments</small>
- </button>
- <button class="door" onclick="openRoom('unsaid')">
- THE UNSAID <small>02 / words</small>
- </button>
- <button class="door" onclick="openRoom('little')">
- THE LITTLE THINGS <small>03 / details</small>
- </button>
- <button class="door" onclick="openRoom('final')">
- THE FINAL GIFT <small>04 / for you</small>
- </button>
+  <div class="small">WELCOME TO YOUR WORLD</div>
+  <h1>For Yuram</h1>
+  <p class="subtitle">Every door holds a little piece of us.</p>
+
+  <div class="rooms">
+    <button class="room" onclick="openRoom('memories')">
+      <span>01</span>THE MEMORIES
+    </button>
+
+    <button class="room" onclick="openRoom('unsaid')">
+      <span>02</span>THE UNSAID
+    </button>
+
+    <button class="room" onclick="openRoom('little')">
+      <span>03</span>THE LITTLE THINGS
+    </button>
+
+    <button class="room" onclick="openRoom('final')">
+      <span>04</span>THE FINAL GIFT
+    </button>
+  </div>
 </section>
 
-<section id="room" class="hidden">
- <div class="tag">SECRET ROOM / PRIVATE</div>
- <h1 id="roomTitle">ROOM</h1>
- <div class="line"></div>
- <div class="message">
- <p id="roomText"></p>
- </div>
- <button class="back" onclick="goBack()">BACK TO THE HALLWAY</button>
+<section id="memories" class="page hidden">
+  <button class="back" onclick="goBack()">← BACK</button>
+  <div class="small">OUR LITTLE UNIVERSE</div>
+  <h1>THE MEMORIES</h1>
+  <p class="subtitle">A few moments I never want to forget.</p>
+
+  <div class="memory-gallery">
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261031_222640_582.jpg" alt="Memory 1">
+      <div class="caption">a little piece of us ♡</div>
+    </button>
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261022_223537_551.jpg" alt="Memory 2">
+      <div class="caption">one of my favorites</div>
+    </button>
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261022_175423_214.jpg" alt="Memory 3">
+      <div class="caption">you and me</div>
+    </button>
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261021_191011_709.jpg" alt="Memory 4">
+      <div class="caption">kept in my heart</div>
+    </button>
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261016_115536_132.jpg" alt="Memory 5">
+      <div class="caption">my favorite person</div>
+    </button>
+
+    <button class="polaroid" onclick="showPhoto(this)">
+      <img src="IMG_20261015_162449_244.jpg" alt="Memory 6">
+      <div class="caption">always a special memory</div>
+    </button>
+
+  </div>
 </section>
 
+<section id="unsaid" class="page hidden">
+  <button class="back" onclick="goBack()">← BACK</button>
+  <div class="small">WORDS FROM MY HEART</div>
+  <h1>THE UNSAID</h1>
+  <div class="room-content">
+    There are so many things I don't always know how to say.
+    But somehow, you have become a part of my every day.
+    Some feelings are too big for words.
+  </div>
+</section>
+
+<section id="little" class="page hidden">
+  <button class="back" onclick="goBack()">← BACK</button>
+  <div class="small">THE DETAILS I LOVE</div>
+  <h1>THE LITTLE THINGS</h1>
+  <div class="room-content">
+    Your voice. Your little habits.
+    The way you make ordinary moments feel different.
+    It's always the little things that mean the most.
+  </div>
+</section>
+
+<section id="final" class="page hidden">
+  <button class="back" onclick="goBack()">← BACK</button>
+  <div class="small">ONE LAST THING</div>
+  <h1>THE FINAL GIFT</h1>
+  <div class="room-content">
+    Happy Birthday, Yuram.
+    I hope this little world reminds you how special you are to me.
+    No matter how many pages or rooms I make,
+    there will always be more things I want to tell you.
+    <br><br>
+    <span style="color:#d6a1c1">— Liam ♡</span>
+  </div>
+</section>
+
+<div id="lightbox" class="hidden" onclick="closePhoto()">
+  <button onclick="closePhoto()">CLOSE ×</button>
+  <img id="bigPhoto" src="" alt="Memory">
 </div>
 
 <script>
-function unlock(){
- const code=document.getElementById('password').value.trim();
- if(code==='27/7/2026'){
-  show('hall');
- }else{
-  document.getElementById('error').innerText='Wrong code. Try again.';
- }
+const secret = "27/7/2026";
+
+function enter() {
+  if (document.getElementById("password").value === secret) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("hall").classList.remove("hidden");
+  } else {
+    document.getElementById("error").textContent = "Wrong code. Try again.";
+  }
 }
-function show(id){
- ['entrance','hall','room'].forEach(x=>
- document.getElementById(x).classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
+
+function openRoom(id) {
+  document.getElementById("hall").classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
 }
-function openRoom(name){
- const data={
- memories:['THE MEMORIES','This room is waiting for our favorite memories. More beautiful moments are yet to come.'],
- unsaid:['THE UNSAID','There are so many little things I want you to know. And some feelings are bigger than words.'],
- little:['THE LITTLE THINGS','Your voice, your personality, your little habits. The details that make you, YOU.'],
- final:['HAPPY BIRTHDAY','Happy Birthday, Yuram. I hope this new year brings you endless happiness. You deserve beautiful things, today and always.']
- };
- document.getElementById('roomTitle').innerText=data[name][0];
- document.getElementById('roomText').innerText=data[name][1];
- show('room');
+
+function goBack() {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
+  document.getElementById("hall").classList.remove("hidden");
 }
-function goBack(){show('hall')}
+
+function showPhoto(element) {
+  document.getElementById("bigPhoto").src =
+    element.querySelector("img").src;
+  document.getElementById("lightbox").classList.remove("hidden");
+}
+
+function closePhoto() {
+  document.getElementById("lightbox").classList.add("hidden");
+}
 </script>
+
 </body>
 </html>
