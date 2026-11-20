@@ -35,10 +35,7 @@ body {
 
 .hidden { display: none !important; }
 
-button, input {
-  font-family: inherit;
-}
-
+button, input { font-family: inherit; }
 button { cursor: pointer; }
 
 .page {
@@ -82,9 +79,7 @@ h1 {
   border-radius: 2px;
 }
 
-.main-btn:hover {
-  background: #8b647d;
-}
+.main-btn:hover { background: #8b647d; }
 
 .back-btn {
   display: block;
@@ -206,9 +201,7 @@ h1 {
   transition: .3s;
 }
 
-.photo-card:hover {
-  transform: translateY(-5px);
-}
+.photo-card:hover { transform: translateY(-5px); }
 
 .photo-card img {
   width: 100%;
@@ -261,9 +254,7 @@ h1 {
   transition: .3s;
 }
 
-.letter-card:hover .envelope {
-  transform: translateY(-7px);
-}
+.letter-card:hover .envelope { transform: translateY(-7px); }
 
 .envelope-back {
   position: absolute;
@@ -313,13 +304,8 @@ h1 {
   z-index: 5;
 }
 
-.letter-card.opening .envelope-flap {
-  transform: rotateX(180deg);
-}
-
-.letter-card.opening .envelope-paper {
-  transform: translateY(-35px);
-}
+.letter-card.opening .envelope-flap { transform: rotateX(180deg); }
+.letter-card.opening .envelope-paper { transform: translateY(-35px); }
 
 .letter-card h3 {
   font-family: 'Cormorant Garamond', serif;
@@ -406,23 +392,99 @@ h1 {
   letter-spacing: 2px;
 }
 
-/* LITTLE THINGS */
+/* LITTLE THINGS - PUZZLE */
 
-.little-list {
-  max-width: 500px;
-  margin: 40px auto;
-  display: grid;
-  gap: 14px;
+.puzzle-area {
+  max-width: 390px;
+  margin: 35px auto;
+  padding: 22px 16px;
+  background: linear-gradient(145deg, #211923, #17121a);
+  border: 1px solid #594352;
 }
 
-.little-item {
-  background: var(--panel);
-  border: 1px solid #493646;
-  padding: 20px;
-  color: #e4cbd8;
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 12px;
-  line-height: 2.5;
+.puzzle-frame {
+  width: 100%;
+  max-width: 330px;
+  margin: 0 auto;
+  padding: 5px;
+  background: #302332;
+  border: 1px solid #98758b;
+}
+
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.puzzle-tile {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #76566d;
+  border-radius: 1px;
+  background-repeat: no-repeat;
+  background-size: 300% 300%;
+  background-color: #352536;
+  padding: 0;
+  transition: filter .15s, transform .15s;
+}
+
+.puzzle-tile:not(.empty):active {
+  filter: brightness(1.25);
+  transform: scale(.97);
+}
+
+.puzzle-tile.empty {
+  background: #100d12;
+  border: 1px dashed #594352;
+  cursor: default;
+}
+
+.puzzle-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 4px 0;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.puzzle-info strong {
+  color: #e7c9d9;
+  font-weight: 400;
+}
+
+.puzzle-message {
+  min-height: 44px;
+  margin-top: 18px;
+  color: #e7c9d9;
+  font-size: 11px;
+  line-height: 2;
+}
+
+.puzzle-button {
+  background: transparent;
+  color: var(--pink);
+  border: 1px solid #79576d;
+  padding: 11px 25px;
+  margin-top: 12px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: .2s;
+}
+
+.puzzle-button:hover {
+  background: #493346;
+}
+
+.puzzle-hint {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 2;
 }
 
 /* FINAL */
@@ -518,7 +580,7 @@ h1 {
     <button class="door" onclick="openRoom('little')">
       <span class="door-icon">✧</span>
       <h3>THE LITTLE THINGS</h3>
-      <p>All the details I love.</p>
+      <p>A little puzzle for you.</p>
     </button>
 
     <button class="door" onclick="openRoom('final')">
@@ -557,16 +619,6 @@ h1 {
       <div class="photo-card" onclick="showPhoto(this)">
         <img src="IMG_20261021_191011_709.jpg" alt="Memory 4">
         <p>MEMORY 04</p>
-      </div>
-
-      <div class="photo-card" onclick="showPhoto(this)">
-        <img src="IMG_20261016_115536_132.jpg" alt="Memory 5">
-        <p>MEMORY 05</p>
-      </div>
-
-      <div class="photo-card" onclick="showPhoto(this)">
-        <img src="IMG_20261015_162449_244.jpg" alt="Memory 6">
-        <p>MEMORY 06</p>
       </div>
     </div>
   </div>
@@ -644,20 +696,36 @@ h1 {
   </div>
 </div>
 
-<!-- LITTLE THINGS -->
+<!-- LITTLE THINGS PUZZLE -->
 
 <section id="little" class="page room hidden">
   <button class="back-btn" onclick="goBack()">← BACK</button>
-  <div class="eyebrow">THE DETAILS</div>
-  <h1>THE LITTLE THINGS</h1>
-  <p class="subtitle">The little things that make you, you.</p>
 
-  <div class="little-list">
-    <div class="little-item">اون صدای قشنگت که حتی وقتی حواسم جای دیگه‌ست، بازم دلم می‌خواد بشنومش.</div>
-    <div class="little-item">اون اخلاق خاصت که یه وقتایی سرد و مغروری و یه وقتایی انقدر دوست‌داشتنی می‌شی که نمی‌دونم چی بگم.</div>
-    <div class="little-item">اینکه همیشه یه جور خاصی توی ذهنمی، حتی وقتایی که اصلاً حرفی بینمون رد و بدل نمی‌شه.</div>
-    <div class="little-item">اینکه مستقل و قوی‌ای و برای خودت شخصیت و دنیای خودتو داری.</div>
-    <div class="little-item">و اینکه با همه‌ی اینا، هنوزم کلی چیز کوچیک ازت هست که دوست دارم بیشتر بشناسمشون.</div>
+  <div class="eyebrow">A LITTLE CHALLENGE</div>
+  <h1>THE LITTLE THINGS</h1>
+  <p class="subtitle">A little piece of us, waiting to be put together.</p>
+
+  <div class="puzzle-area">
+    <div class="puzzle-frame">
+      <div id="puzzle-grid" class="puzzle-grid"></div>
+    </div>
+
+    <div class="puzzle-info">
+      <span>MOVES: <strong id="move-count">0</strong></span>
+      <span>PUZZLE 01 / 01</span>
+    </div>
+
+    <p id="puzzle-message" class="puzzle-message">
+      Put the little pieces back together.
+    </p>
+
+    <button class="puzzle-button" onclick="shufflePuzzle()">
+      SHUFFLE AGAIN
+    </button>
+
+    <p class="puzzle-hint">
+      Tap a tile next to the empty space to move it.
+    </p>
   </div>
 </section>
 
@@ -719,6 +787,13 @@ function openRoom(id) {
 
   document.getElementById(id).classList.remove("hidden");
   window.scrollTo(0, 0);
+
+  if (id === "little") {
+    if (!puzzleStarted) {
+      shufflePuzzle();
+      puzzleStarted = true;
+    }
+  }
 }
 
 function goBack() {
@@ -731,6 +806,8 @@ function goBack() {
   closePhoto();
   window.scrollTo(0, 0);
 }
+
+/* LETTERS */
 
 const letters = [
   {
@@ -814,6 +891,8 @@ function closeLetter() {
   });
 }
 
+/* PHOTO VIEWER */
+
 function showPhoto(element) {
   const image = element.querySelector("img");
   document.getElementById("big-photo").src = image.src;
@@ -822,6 +901,112 @@ function showPhoto(element) {
 
 function closePhoto() {
   document.getElementById("photo-modal").classList.add("hidden");
+}
+
+/* PUZZLE GAME */
+
+const puzzleImage = "IMG_20261016_115536_132.jpg";
+
+let puzzlePieces = [0,1,2,3,4,5,6,7,8];
+let puzzleMoves = 0;
+let puzzleStarted = false;
+let puzzleCompleted = false;
+
+function renderPuzzle() {
+  const grid = document.getElementById("puzzle-grid");
+  grid.innerHTML = "";
+
+  puzzlePieces.forEach((piece, index) => {
+    const tile = document.createElement("button");
+    tile.className = "puzzle-tile";
+
+    if (piece === 8) {
+      tile.classList.add("empty");
+      tile.disabled = true;
+      tile.setAttribute("aria-label", "Empty space");
+    } else {
+      const x = (piece % 3) * 50;
+      const y = Math.floor(piece / 3) * 50;
+
+      tile.style.backgroundImage = `url("${puzzleImage}")`;
+      tile.style.backgroundPosition = `${x}% ${y}%`;
+      tile.setAttribute("aria-label", "Puzzle piece");
+      tile.addEventListener("click", () => moveTile(index));
+    }
+
+    grid.appendChild(tile);
+  });
+
+  document.getElementById("move-count").textContent = puzzleMoves;
+}
+
+function moveTile(index) {
+  if (puzzleCompleted) return;
+
+  const emptyIndex = puzzlePieces.indexOf(8);
+
+  const row = Math.floor(index / 3);
+  const col = index % 3;
+  const emptyRow = Math.floor(emptyIndex / 3);
+  const emptyCol = emptyIndex % 3;
+
+  const distance = Math.abs(row - emptyRow) + Math.abs(col - emptyCol);
+
+  if (distance !== 1) return;
+
+  [puzzlePieces[index], puzzlePieces[emptyIndex]] =
+  [puzzlePieces[emptyIndex], puzzlePieces[index]];
+
+  puzzleMoves++;
+  renderPuzzle();
+
+  if (puzzlePieces.every((piece, i) => piece === i)) {
+    puzzleCompleted = true;
+    document.getElementById("puzzle-message").textContent =
+      "You did it! Every little piece found its place. ♡";
+  }
+}
+
+function shufflePuzzle() {
+  puzzlePieces = [0,1,2,3,4,5,6,7,8];
+  puzzleMoves = 0;
+  puzzleCompleted = false;
+
+  let previousEmpty = -1;
+
+  for (let i = 0; i < 100; i++) {
+    const emptyIndex = puzzlePieces.indexOf(8);
+    const row = Math.floor(emptyIndex / 3);
+    const col = emptyIndex % 3;
+
+    let neighbors = [];
+
+    if (row > 0) neighbors.push(emptyIndex - 3);
+    if (row < 2) neighbors.push(emptyIndex + 3);
+    if (col > 0) neighbors.push(emptyIndex - 1);
+    if (col < 2) neighbors.push(emptyIndex + 1);
+
+    let possible = neighbors.filter(n => n !== previousEmpty);
+
+    if (possible.length === 0) possible = neighbors;
+
+    const chosen = possible[Math.floor(Math.random() * possible.length)];
+
+    [puzzlePieces[emptyIndex], puzzlePieces[chosen]] =
+    [puzzlePieces[chosen], puzzlePieces[emptyIndex]];
+
+    previousEmpty = emptyIndex;
+  }
+
+  if (puzzlePieces.every((piece, i) => piece === i)) {
+    shufflePuzzle();
+    return;
+  }
+
+  document.getElementById("puzzle-message").textContent =
+    "Put the little pieces back together.";
+
+  renderPuzzle();
 }
 </script>
 
