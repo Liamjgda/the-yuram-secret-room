@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Room | Yuram</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#09090c;color:#e5e5eb;
+ font-family:Georgia,serif;min-height:100vh;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:22px;
+}
+.container{width:100%;max-width:440px}
+.tag{color:#d68ba9;letter-spacing:5px;font-size:10px}
+h1{font-size:39px;letter-spacing:5px;font-weight:normal;margin:25px 0 12px}
+.subtitle{color:#aaa;font-size:13px;letter-spacing:2px}
+.line{width:65px;height:1px;background:#d68ba9;margin:30px auto}
+p{color:#aaa;line-height:1.8;font-size:14px}
+input{
+ width:100%;background:#111116;border:1px solid #555;
+ padding:16px;color:#f0d4e1;text-align:center;
+ letter-spacing:4px;font-size:17px;margin:20px 0;
+ outline:none;
+}
+button{
+ background:transparent;border:1px solid #d68ba9;
+ color:#e8b4cb;padding:14px 24px;
+ letter-spacing:3px;cursor:pointer;margin:8px;
+ transition:.3s;
+}
+button:hover{background:#d68ba9;color:#09090c}
+.hidden{display:none}
+.door{
+ display:block;width:100%;margin:13px 0;
+ border-color:#555;color:#ddd;letter-spacing:2px
+}
+.door small{display:block;color:#d68ba9;margin-top:7px}
+.message{border:1px solid #444;padding:25px;margin-top:20px}
+.back{font-size:11px;border-color:#555}
+</style>
+</head>
+<body>
+<div class="container">
+
+<section id="entrance">
+ <div class="tag">PRIVATE ACCESS / 001</div>
+ <h1>SECRET ROOM</h1>
+ <div class="subtitle">YURAM'S PRIVATE WORLD</div>
+ <div class="line"></div>
+ <p>Some places are meant for one person only.</p>
+ <p>Welcome, Yuram.</p>
+ <input id="password" type="password" placeholder="ENTER THE SECRET CODE">
+ <button onclick="unlock()">ENTER THE ROOM</button>
+ <p id="error" style="color:#e58cae"></p>
+ <div class="tag" style="margin-top:35px">EST. 27 / 07 / 2026</div>
+</section>
+
+<section id="hall" class="hidden">
+ <div class="tag">ACCESS GRANTED</div>
+ <h1>WELCOME</h1>
+ <p>You've found a little world made just for you.</p>
+ <div class="line"></div>
+ <button class="door" onclick="openRoom('memories')">
+ THE MEMORIES <small>01 / moments</small>
+ </button>
+ <button class="door" onclick="openRoom('unsaid')">
+ THE UNSAID <small>02 / words</small>
+ </button>
+ <button class="door" onclick="openRoom('little')">
+ THE LITTLE THINGS <small>03 / details</small>
+ </button>
+ <button class="door" onclick="openRoom('final')">
+ THE FINAL GIFT <small>04 / for you</small>
+ </button>
+</section>
+
+<section id="room" class="hidden">
+ <div class="tag">SECRET ROOM / PRIVATE</div>
+ <h1 id="roomTitle">ROOM</h1>
+ <div class="line"></div>
+ <div class="message">
+ <p id="roomText"></p>
+ </div>
+ <button class="back" onclick="goBack()">BACK TO THE HALLWAY</button>
+</section>
+
+</div>
+
+<script>
+function unlock(){
+ const code=document.getElementById('password').value.trim();
+ if(code==='27/7/2026'){
+  show('hall');
+ }else{
+  document.getElementById('error').innerText='Wrong code. Try again.';
+ }
+}
+function show(id){
+ ['entrance','hall','room'].forEach(x=>
+ document.getElementById(x).classList.add('hidden'));
+ document.getElementById(id).classList.remove('hidden');
+}
+function openRoom(name){
+ const data={
+ memories:['THE MEMORIES','This room is waiting for our favorite memories. More beautiful moments are yet to come.'],
+ unsaid:['THE UNSAID','There are so many little things I want you to know. And some feelings are bigger than words.'],
+ little:['THE LITTLE THINGS','Your voice, your personality, your little habits. The details that make you, YOU.'],
+ final:['HAPPY BIRTHDAY','Happy Birthday, Yuram. I hope this new year brings you endless happiness. You deserve beautiful things, today and always.']
+ };
+ document.getElementById('roomTitle').innerText=data[name][0];
+ document.getElementById('roomText').innerText=data[name][1];
+ show('room');
+}
+function goBack(){show('hall')}
+</script>
+</body>
+</html>
