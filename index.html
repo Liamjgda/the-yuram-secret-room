@@ -547,19 +547,13 @@ button {
 
 <body>
 
-<!-- LOGIN -->
-
 <section id="login">
   <div class="login-box">
     <div class="small-label">A PRIVATE LITTLE WORLD</div>
     <h1>Yuram's Secret Room</h1>
     <p>Some things are only meant for you.</p>
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Enter the password"
-    >
+    <input type="password" id="password" placeholder="Enter the password">
 
     <button class="primary-btn" onclick="enterSite()">
       OPEN THE DOOR
@@ -568,8 +562,6 @@ button {
     <div id="error"></div>
   </div>
 </section>
-
-<!-- MAIN WEBSITE -->
 
 <main id="website" class="hidden">
 
@@ -614,8 +606,6 @@ button {
     </div>
   </section>
 
-  <!-- MEMORIES ROOM -->
-
   <section id="memories" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
@@ -649,8 +639,6 @@ button {
 
     </div>
   </section>
-
-  <!-- UNSAID ROOM -->
 
   <section id="unsaid" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
@@ -699,8 +687,6 @@ button {
     </div>
   </section>
 
-  <!-- LITTLE THINGS ROOM -->
-
   <section id="little" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
@@ -737,8 +723,6 @@ button {
       <div class="note">بین این همه آدم، انتخاب من هنوز تویی.</div>
     </div>
   </section>
-
-  <!-- FINAL GIFT ROOM -->
 
   <section id="final" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
@@ -784,8 +768,6 @@ button {
 
 <script>
 
-/* PASSWORD */
-
 function enterSite() {
   const password = document.getElementById("password").value;
 
@@ -800,9 +782,6 @@ function enterSite() {
 document.getElementById("password").addEventListener("keydown", function(e) {
   if (e.key === "Enter") enterSite();
 });
-
-
-/* ROOM NAVIGATION */
 
 const roomIds = ["memories", "unsaid", "little", "final"];
 
@@ -833,9 +812,6 @@ function goHome() {
   closeLetter();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-
-/* LETTERS */
 
 const letters = [
   {
@@ -883,7 +859,6 @@ function openLetter(index) {
 function closeLetter() {
   document.getElementById("letter-content").classList.add("hidden");
 }
-
 
 /* SLIDING PUZZLE */
 
