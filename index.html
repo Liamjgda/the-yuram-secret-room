@@ -111,6 +111,8 @@ input {
   margin-bottom: 35px;
 }
 
+/* MEMORIES */
+
 .memory-gallery {
   max-width: 850px;
   margin: 45px auto;
@@ -149,14 +151,6 @@ input {
   margin-top: 12px;
 }
 
-.room-content {
-  max-width: 600px;
-  margin: 55px auto;
-  padding: 20px;
-  line-height: 2.2;
-  color: #d0bdca;
-}
-
 #lightbox {
   position: fixed;
   inset: 0;
@@ -185,15 +179,201 @@ input {
   border: 1px solid white;
 }
 
+/* UNSAID */
+
+.letters {
+  max-width: 650px;
+  margin: 55px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 45px 20px;
+}
+
+.letter-card {
+  cursor: pointer;
+  text-align: center;
+}
+
+.letter-card p {
+  color: #e5c5d8;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+.letter-card small {
+  color: #a995a6;
+  font-size: 11px;
+}
+
+.envelope {
+  width: 190px;
+  height: 125px;
+  margin: auto;
+  position: relative;
+  perspective: 700px;
+  filter: drop-shadow(0 10px 12px #0008);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #806176;
+  border-radius: 5px;
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  background: #594052;
+  clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0;
+  background: #a47d98;
+  clip-path: polygon(0 0, 100% 0, 50% 65%);
+  transform-origin: top;
+  transition: transform .65s ease;
+  z-index: 4;
+}
+
+.letter-paper {
+  position: absolute;
+  width: 85%;
+  height: 90%;
+  left: 7.5%;
+  top: 5%;
+  background: #f0e8eb;
+  transition: transform .7s ease;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -20%);
+  color: #f6d7e8;
+  font-size: 24px;
+}
+
+.letter-card:hover .letter-paper {
+  transform: translateY(-15px);
+}
+
+.letter-card.opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.letter-card.opening .letter-paper {
+  transform: translateY(-55px);
+  z-index: 5;
+}
+
+.letter-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #080609ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.letter-inside {
+  position: relative;
+  background: #eee6eb;
+  color: #392b37;
+  width: 100%;
+  max-width: 430px;
+  min-height: 350px;
+  padding: 45px 28px 30px;
+  box-shadow: 0 15px 50px #0009;
+  animation: letterAppear .6s ease;
+  text-align: center;
+}
+
+@keyframes letterAppear {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.letter-inside h2 {
+  font-weight: normal;
+  font-size: 23px;
+}
+
+.letter-divider {
+  color: #a77c99;
+  margin: 20px;
+}
+
+#letter-text {
+  line-height: 2.1;
+  font-size: 15px;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.letter-sign {
+  text-align: right;
+  color: #956b87;
+  margin-top: 25px;
+}
+
+.close-letter {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  border: none;
+  background: transparent;
+  color: #594052;
+  font-size: 25px;
+}
+
+/* OTHER ROOMS */
+
+.room-content {
+  max-width: 600px;
+  margin: 55px auto;
+  padding: 20px;
+  line-height: 2.2;
+  color: #d0bdca;
+}
+
 @media(max-width:480px) {
   .rooms { gap: 10px; }
   .room { padding: 27px 5px; font-size: 12px; }
+
   .memory-gallery { gap: 20px 12px; }
+
+  .letters { gap: 35px 10px; }
+
+  .envelope {
+    width: 145px;
+    height: 100px;
+  }
+
+  .letter-card p { font-size: 12px; }
+  .letter-card small { font-size: 10px; }
 }
 </style>
 </head>
 
 <body>
+
+<!-- LOGIN -->
 
 <section id="login">
   <div class="small">A PRIVATE WORLD</div>
@@ -206,6 +386,8 @@ input {
   <button class="main-btn" onclick="enter()">ENTER</button>
   <p id="error" style="color:#d6a1c1"></p>
 </section>
+
+<!-- HALL -->
 
 <section id="hall" class="hidden">
   <div class="small">WELCOME TO YOUR WORLD</div>
@@ -231,8 +413,11 @@ input {
   </div>
 </section>
 
+<!-- MEMORIES -->
+
 <section id="memories" class="page hidden">
   <button class="back" onclick="goBack()">← BACK</button>
+
   <div class="small">OUR LITTLE UNIVERSE</div>
   <h1>THE MEMORIES</h1>
   <p class="subtitle">A few moments I never want to forget.</p>
@@ -272,21 +457,89 @@ input {
   </div>
 </section>
 
+<!-- UNSAID -->
+
 <section id="unsaid" class="page hidden">
   <button class="back" onclick="goBack()">← BACK</button>
-  <div class="small">WORDS FROM MY HEART</div>
+
+  <div class="small">LETTERS FROM MY HEART</div>
   <h1>THE UNSAID</h1>
-  <div class="room-content">
-    There are so many things I don't always know how to say.
-    But somehow, you have become a part of my every day.
-    Some feelings are too big for words.
+  <p class="subtitle">
+    Little things I've always wanted you to know.
+  </p>
+
+  <div class="letters">
+
+    <div class="letter-card" onclick="openLetter(0)">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter-paper"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="heart">♡</div>
+      </div>
+      <p>01 — To you</p>
+      <small>Something I never said</small>
+    </div>
+
+    <div class="letter-card" onclick="openLetter(1)">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter-paper"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="heart">♡</div>
+      </div>
+      <p>02 — My favorite person</p>
+      <small>A little confession</small>
+    </div>
+
+    <div class="letter-card" onclick="openLetter(2)">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter-paper"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="heart">♡</div>
+      </div>
+      <p>03 — If you only knew</p>
+      <small>What's in my heart</small>
+    </div>
+
+    <div class="letter-card" onclick="openLetter(3)">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter-paper"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
+        <div class="heart">♡</div>
+      </div>
+      <p>04 — Just for you</p>
+      <small>One last thing</small>
+    </div>
+
+  </div>
+
+  <div id="letter-modal" class="letter-modal hidden">
+    <div class="letter-inside">
+      <button class="close-letter" onclick="closeLetter()">×</button>
+      <div class="small">A LETTER FOR YURAM</div>
+      <h2 id="letter-title"></h2>
+      <div class="letter-divider">♡</div>
+      <p id="letter-text"></p>
+      <div class="letter-sign">— Liam ♡</div>
+    </div>
   </div>
 </section>
 
+<!-- LITTLE THINGS -->
+
 <section id="little" class="page hidden">
   <button class="back" onclick="goBack()">← BACK</button>
+
   <div class="small">THE DETAILS I LOVE</div>
   <h1>THE LITTLE THINGS</h1>
+
   <div class="room-content">
     Your voice. Your little habits.
     The way you make ordinary moments feel different.
@@ -294,10 +547,14 @@ input {
   </div>
 </section>
 
+<!-- FINAL GIFT -->
+
 <section id="final" class="page hidden">
   <button class="back" onclick="goBack()">← BACK</button>
+
   <div class="small">ONE LAST THING</div>
   <h1>THE FINAL GIFT</h1>
+
   <div class="room-content">
     Happy Birthday, Yuram.
     I hope this little world reminds you how special you are to me.
@@ -308,20 +565,61 @@ input {
   </div>
 </section>
 
+<!-- PHOTO VIEWER -->
+
 <div id="lightbox" class="hidden" onclick="closePhoto()">
   <button onclick="closePhoto()">CLOSE ×</button>
   <img id="bigPhoto" src="" alt="Memory">
 </div>
 
 <script>
+
 const secret = "27/7/2026";
+
+const letters = [
+  {
+    title: "Something I never said",
+    text: `I don't think you realize how much space you have in my heart.
+
+Sometimes I have a thousand things to tell you, but I just don't know where to start.
+
+I hope you never doubt how much you mean to me. ♡`
+  },
+  {
+    title: "My favorite person",
+    text: `You have this little way of making my ordinary days feel special.
+
+Even the smallest conversations with you can become my favorite part of the day.
+
+I'm really glad it's you.`
+  },
+  {
+    title: "If you only knew",
+    text: `If you could see my thoughts for a moment, you'd probably understand why you cross my mind so often.
+
+I may not always show everything I feel, but that doesn't make my feelings any less real.
+
+You matter to me more than I can explain.`
+  },
+  {
+    title: "Just for you",
+    text: `I don't need everything to be perfect.
+
+I just want more little moments with you, more silly conversations, more memories and more reasons to smile.
+
+Happy birthday, my favorite girl.
+
+I'm so lucky to have you in my world. ♡`
+  }
+];
 
 function enter() {
   if (document.getElementById("password").value === secret) {
     document.getElementById("login").classList.add("hidden");
     document.getElementById("hall").classList.remove("hidden");
   } else {
-    document.getElementById("error").textContent = "Wrong code. Try again.";
+    document.getElementById("error").textContent =
+      "Wrong code. Try again.";
   }
 }
 
@@ -334,18 +632,49 @@ function goBack() {
   document.querySelectorAll(".page").forEach(page => {
     page.classList.add("hidden");
   });
+
   document.getElementById("hall").classList.remove("hidden");
+  closeLetter();
 }
 
 function showPhoto(element) {
   document.getElementById("bigPhoto").src =
     element.querySelector("img").src;
+
   document.getElementById("lightbox").classList.remove("hidden");
 }
 
 function closePhoto() {
   document.getElementById("lightbox").classList.add("hidden");
 }
+
+function openLetter(index) {
+  document.querySelectorAll(".letter-card").forEach(card => {
+    card.classList.remove("opening");
+  });
+
+  const cards = document.querySelectorAll(".letter-card");
+  cards[index].classList.add("opening");
+
+  document.getElementById("letter-title").textContent =
+    letters[index].title;
+
+  document.getElementById("letter-text").textContent =
+    letters[index].text;
+
+  setTimeout(() => {
+    document.getElementById("letter-modal").classList.remove("hidden");
+  }, 650);
+}
+
+function closeLetter() {
+  document.getElementById("letter-modal").classList.add("hidden");
+
+  document.querySelectorAll(".letter-card").forEach(card => {
+    card.classList.remove("opening");
+  });
+}
+
 </script>
 
 </body>
