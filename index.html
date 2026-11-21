@@ -41,6 +41,8 @@ button {
   display: none !important;
 }
 
+/* LOGIN */
+
 #login {
   min-height: 100vh;
   display: flex;
@@ -110,6 +112,8 @@ button {
   font-size: 11px;
   margin-top: 15px;
 }
+
+/* WEBSITE */
 
 #website {
   min-height: 100vh;
@@ -264,6 +268,100 @@ button {
   margin-top: 12px;
 }
 
+/* WELCOME ANIMATION */
+
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 25px;
+  background:
+    radial-gradient(circle at center, #38202e 0%, #171019 48%, #09080b 100%);
+  animation: welcomeFadeIn 1s ease both;
+}
+
+#welcome-screen.leaving {
+  animation: welcomeFadeOut .9s ease forwards;
+}
+
+.welcome-star {
+  color: var(--pink);
+  font-size: 38px;
+  margin-bottom: 25px;
+  animation: starFloat 2.5s ease-in-out infinite;
+}
+
+.welcome-small {
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: welcomeText 1s .3s ease forwards;
+}
+
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(45px, 12vw, 75px);
+  line-height: 1.1;
+  opacity: 0;
+  animation: welcomeText 1.2s .7s ease forwards;
+}
+
+.welcome-subtitle {
+  color: var(--silver);
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-top: 22px;
+  opacity: 0;
+  animation: welcomeText 1.2s 1.2s ease forwards;
+}
+
+.welcome-line {
+  width: 0;
+  height: 1px;
+  background: var(--pink);
+  margin-top: 30px;
+  animation: welcomeLine 1.5s 1.5s ease forwards;
+}
+
+@keyframes welcomeFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes welcomeFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes welcomeText {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes welcomeLine {
+  from { width: 0; }
+  to { width: 115px; }
+}
+
+@keyframes starFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-9px) rotate(15deg); }
+}
+
 /* MEMORIES */
 
 .gallery {
@@ -321,6 +419,8 @@ button {
   padding: 25px 12px;
   text-align: center;
   transition: .3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .envelope:hover {
@@ -349,6 +449,28 @@ button {
   margin-top: 9px;
 }
 
+/* ENVELOPE OPEN ANIMATION */
+
+.envelope.opening {
+  animation: envelopeOpen .65s ease forwards;
+}
+
+@keyframes envelopeOpen {
+  0% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+  45% {
+    transform: scale(1.08) rotate(-2deg);
+    border-color: var(--pink);
+    box-shadow: 0 0 25px #c58b9f55;
+  }
+  100% {
+    transform: scale(.92) rotate(2deg);
+    opacity: .35;
+  }
+}
+
 .letter-content {
   max-width: 620px;
   margin: 35px auto 0;
@@ -356,6 +478,23 @@ button {
   background: #1b141c;
   border: 1px solid #5a4050;
   text-align: center;
+}
+
+.letter-content.letter-reveal {
+  animation: letterReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes letterReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.96);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
 }
 
 .letter-content h3 {
@@ -506,6 +645,34 @@ button {
   margin-top: 30px;
 }
 
+/* NEW EMPTY ROOMS */
+
+.empty-room-space {
+  min-height: 280px;
+  max-width: 700px;
+  margin: auto;
+  border: 1px dashed #493541;
+  background: linear-gradient(145deg, #171219, #100d13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.empty-room-space span {
+  display: block;
+  color: #705365;
+  font-size: 35px;
+  margin-bottom: 18px;
+}
+
+.empty-room-space p {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
 .footer {
   text-align: center;
   color: #6c5c69;
@@ -568,6 +735,15 @@ button {
 
 <main id="website" class="hidden">
 
+  <!-- WELCOME SCREEN -->
+  <section id="welcome-screen" class="hidden">
+    <div class="welcome-star">✧</div>
+    <div class="welcome-small">A LITTLE WORLD MADE FOR YOU</div>
+    <h1 class="welcome-title">Welcome, Yuram.</h1>
+    <p class="welcome-subtitle">I'm so glad you're here.</p>
+    <div class="welcome-line"></div>
+  </section>
+
   <header class="topbar">
     <div class="brand">For Y.</div>
     <span>MADE WITH LOVE</span>
@@ -606,8 +782,36 @@ button {
         <p>One last thing, just for you.</p>
       </button>
 
+      <!-- NEW ROOMS -->
+
+      <button class="room-card" onclick="openRoom('playlist')">
+        <span class="room-number">05</span>
+        <h2>THE PLAYLIST</h2>
+        <p>A soundtrack for us.</p>
+      </button>
+
+      <button class="room-card" onclick="openRoom('reasons')">
+        <span class="room-number">06</span>
+        <h2>THE REASONS</h2>
+        <p>A few things about you.</p>
+      </button>
+
+      <button class="room-card" onclick="openRoom('moments')">
+        <span class="room-number">07</span>
+        <h2>THE MOMENTS</h2>
+        <p>Some things deserve their own place.</p>
+      </button>
+
+      <button class="room-card" onclick="openRoom('surprises')">
+        <span class="room-number">08</span>
+        <h2>THE SURPRISES</h2>
+        <p>Something you haven't seen yet.</p>
+      </button>
+
     </div>
   </section>
+
+  <!-- MEMORIES -->
 
   <section id="memories" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
@@ -643,6 +847,8 @@ button {
     </div>
   </section>
 
+  <!-- UNSAID -->
+
   <section id="unsaid" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
@@ -654,25 +860,25 @@ button {
 
     <div class="letters">
 
-      <button class="envelope" onclick="openLetter(0)">
+      <button class="envelope" onclick="openLetter(0, this)">
         <span class="symbol">✉</span>
         <h3>Something I never said</h3>
         <small>LETTER NO. 01</small>
       </button>
 
-      <button class="envelope" onclick="openLetter(1)">
+      <button class="envelope" onclick="openLetter(1, this)">
         <span class="symbol">✉</span>
         <h3>When I think of you</h3>
         <small>LETTER NO. 02</small>
       </button>
 
-      <button class="envelope" onclick="openLetter(2)">
+      <button class="envelope" onclick="openLetter(2, this)">
         <span class="symbol">✉</span>
         <h3>A little confession</h3>
         <small>LETTER NO. 03</small>
       </button>
 
-      <button class="envelope" onclick="openLetter(3)">
+      <button class="envelope" onclick="openLetter(3, this)">
         <span class="symbol">✉</span>
         <h3>Just because</h3>
         <small>LETTER NO. 04</small>
@@ -689,6 +895,8 @@ button {
       </button>
     </div>
   </section>
+
+  <!-- LITTLE THINGS -->
 
   <section id="little" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
@@ -727,6 +935,8 @@ button {
     </div>
   </section>
 
+  <!-- FINAL GIFT -->
+
   <section id="final" class="room hidden">
     <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
 
@@ -763,6 +973,82 @@ button {
     </div>
   </section>
 
+  <!-- NEW EMPTY PAGE 05 -->
+
+  <section id="playlist" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 05</div>
+      <h2>The Playlist</h2>
+      <p>A soundtrack for us.</p>
+    </div>
+
+    <div class="empty-room-space">
+      <div>
+        <span>♫</span>
+        <p>THIS LITTLE SPACE IS WAITING FOR SOMETHING</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW EMPTY PAGE 06 -->
+
+  <section id="reasons" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 06</div>
+      <h2>The Reasons</h2>
+      <p>A few things about you.</p>
+    </div>
+
+    <div class="empty-room-space">
+      <div>
+        <span>♡</span>
+        <p>THIS LITTLE SPACE IS WAITING FOR SOMETHING</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW EMPTY PAGE 07 -->
+
+  <section id="moments" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 07</div>
+      <h2>The Moments</h2>
+      <p>Some things deserve their own place.</p>
+    </div>
+
+    <div class="empty-room-space">
+      <div>
+        <span>✧</span>
+        <p>THIS LITTLE SPACE IS WAITING FOR SOMETHING</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW EMPTY PAGE 08 -->
+
+  <section id="surprises" class="room hidden">
+    <button class="back-btn" onclick="goHome()">← BACK TO HOME</button>
+
+    <div class="room-heading">
+      <div class="eyebrow">ROOM 08</div>
+      <h2>The Surprises</h2>
+      <p>Something you haven't seen yet.</p>
+    </div>
+
+    <div class="empty-room-space">
+      <div>
+        <span>✉</span>
+        <p>THIS LITTLE SPACE IS WAITING FOR SOMETHING</p>
+      </div>
+    </div>
+  </section>
+
   <footer class="footer">
     MADE FOR ONE PERSON · 27
   </footer>
@@ -771,14 +1057,31 @@ button {
 
 <script>
 
+/* LOGIN AND WELCOME */
+
 function enterSite() {
   const password = document.getElementById("password").value;
 
   if (password === "27/7/2026") {
     document.getElementById("login").classList.add("hidden");
     document.getElementById("website").classList.remove("hidden");
+
+    const welcome = document.getElementById("welcome-screen");
+    welcome.classList.remove("hidden");
+
+    setTimeout(() => {
+      welcome.classList.add("leaving");
+
+      setTimeout(() => {
+        welcome.classList.add("hidden");
+        welcome.classList.remove("leaving");
+      }, 900);
+
+    }, 3500);
+
   } else {
-    document.getElementById("error").textContent = "That's not the right password.";
+    document.getElementById("error").textContent =
+      "That's not the right password.";
   }
 }
 
@@ -786,7 +1089,19 @@ document.getElementById("password").addEventListener("keydown", function(e) {
   if (e.key === "Enter") enterSite();
 });
 
-const roomIds = ["memories", "unsaid", "little", "final"];
+
+/* ROOMS */
+
+const roomIds = [
+  "memories",
+  "unsaid",
+  "little",
+  "final",
+  "playlist",
+  "reasons",
+  "moments",
+  "surprises"
+];
 
 function openRoom(room) {
   document.getElementById("home").classList.add("hidden");
@@ -815,6 +1130,9 @@ function goHome() {
   closeLetter();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
+
+/* LETTERS */
 
 const letters = [
   {
@@ -849,21 +1167,61 @@ const letters = [
   }
 ];
 
-function openLetter(index) {
+let letterTimer = null;
+
+function openLetter(index, envelope) {
   const content = document.getElementById("letter-content");
 
-  document.getElementById("letter-title").textContent = letters[index].title;
-  document.getElementById("letter-text").textContent = letters[index].text;
+  if (letterTimer) {
+    clearTimeout(letterTimer);
+  }
 
-  content.classList.remove("hidden");
-  content.scrollIntoView({ behavior: "smooth", block: "center" });
+  document.querySelectorAll(".envelope").forEach(item => {
+    item.classList.remove("opening");
+  });
+
+  envelope.classList.add("opening");
+
+  document.getElementById("letter-title").textContent =
+    letters[index].title;
+
+  document.getElementById("letter-text").textContent =
+    letters[index].text;
+
+  content.classList.add("hidden");
+  content.classList.remove("letter-reveal");
+
+  letterTimer = setTimeout(() => {
+    content.classList.remove("hidden");
+
+    void content.offsetWidth;
+
+    content.classList.add("letter-reveal");
+
+    content.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  }, 450);
 }
 
 function closeLetter() {
-  document.getElementById("letter-content").classList.add("hidden");
+  const content = document.getElementById("letter-content");
+
+  content.classList.add("hidden");
+  content.classList.remove("letter-reveal");
+
+  document.querySelectorAll(".envelope").forEach(item => {
+    item.classList.remove("opening");
+  });
+
+  if (letterTimer) {
+    clearTimeout(letterTimer);
+  }
 }
 
-/* NEW FREE MOVE PUZZLE */
+
+/* FREE MOVE PUZZLE */
 
 let puzzleTiles = [];
 let moves = 0;
