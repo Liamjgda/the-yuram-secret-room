@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -610,11 +609,415 @@ button {
   line-height: 2;
 }
 
-/* FINAL GIFT */
+/* FINAL GIFT - SECRET BOX */
+
+.final-gift-stage {
+  max-width: 620px;
+  margin: auto;
+  padding: 35px 20px 45px;
+  text-align: center;
+  border: 1px solid #604759;
+  background:
+    radial-gradient(circle at 50% 35%, #30202f 0%, #1a121d 48%, #100d14 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 440px;
+}
+
+.final-gift-label {
+  color: var(--pink);
+  font-size: 9px;
+  letter-spacing: 4px;
+  margin-bottom: 15px;
+}
+
+.final-gift-question {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(25px, 6vw, 34px);
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.final-gift-hint {
+  color: var(--silver);
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.gift-box-area {
+  height: 185px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 700px;
+}
+
+.gift-box {
+  width: 145px;
+  height: 105px;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 20px #0008);
+}
+
+.gift-box-base {
+  position: absolute;
+  width: 145px;
+  height: 85px;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #9b536e, #5c2d49);
+  border: 1px solid #d49ab1;
+  border-radius: 3px 3px 8px 8px;
+}
+
+.gift-box-base::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 100%;
+  left: 60px;
+  background: linear-gradient(90deg, #d9b9c8, #f4e4ec, #b78da4);
+}
+
+.gift-box-lid {
+  position: absolute;
+  width: 159px;
+  height: 29px;
+  left: -7px;
+  top: 12px;
+  z-index: 2;
+  background: linear-gradient(135deg, #c47e99, #713b5a);
+  border: 1px solid #e2b4c8;
+  border-radius: 4px;
+  transform-origin: left bottom;
+  transition: transform 1s ease, opacity .8s ease;
+}
+
+.gift-box-lid::before {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 100%;
+  left: 60px;
+  background: linear-gradient(90deg, #d9b9c8, #f4e4ec, #b78da4);
+}
+
+.gift-bow {
+  position: absolute;
+  width: 55px;
+  height: 25px;
+  left: 45px;
+  top: -10px;
+  z-index: 3;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 22px;
+  border: 5px solid #e7c9d7;
+  border-radius: 50% 50% 10% 50%;
+}
+
+.gift-bow::before {
+  left: 0;
+  transform: rotate(25deg);
+}
+
+.gift-bow::after {
+  right: 0;
+  transform: rotate(65deg);
+}
+
+.gift-lock {
+  position: absolute;
+  z-index: 5;
+  left: 61px;
+  top: 49px;
+  color: #f5dce8;
+  font-size: 21px;
+  text-shadow: 0 0 12px #fff;
+}
+
+.gift-box.opened .gift-box-lid {
+  transform: translate(-18px, -65px) rotate(-28deg);
+  opacity: 0;
+}
+
+.gift-box.opened .gift-bow {
+  animation: bowFly .7s ease forwards;
+}
+
+.gift-box.opened .gift-lock {
+  opacity: 0;
+  transition: .3s;
+}
+
+@keyframes bowFly {
+  to {
+    transform: translate(60px, -90px) rotate(55deg);
+    opacity: 0;
+  }
+}
+
+.gift-answer-area {
+  max-width: 340px;
+  margin: 10px auto 0;
+}
+
+.gift-answer-area input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 13px;
+  background: #100d14;
+  border: 1px solid #604759;
+  color: var(--light);
+  text-align: center;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.gift-answer-area input:focus {
+  border-color: var(--pink);
+  box-shadow: 0 0 15px #c58b9f33;
+}
+
+.gift-error {
+  min-height: 17px;
+  margin-top: 12px;
+  color: #e5a0b4;
+  font-size: 10px;
+}
+
+.gift-open-btn {
+  display: inline-block;
+}
+
+.gift-reveal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 25px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, #382039 0%, #1b1120 45%, #09080b 100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.gift-reveal.active {
+  visibility: visible;
+  pointer-events: auto;
+  animation: revealBackground 1s ease forwards;
+}
+
+@keyframes revealBackground {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gift-reveal-star {
+  position: absolute;
+  z-index: 4;
+  color: #fff6fc;
+  font-size: 75px;
+  text-shadow:
+    0 0 10px white,
+    0 0 25px #f7b8d7,
+    0 0 55px #d77eb5,
+    0 0 90px #c58b9f;
+  opacity: 0;
+  transform: scale(.1) rotate(0deg);
+}
+
+.gift-reveal.active .gift-reveal-star {
+  animation: starAppear 1.2s .3s ease forwards;
+}
+
+@keyframes starAppear {
+  0% {
+    opacity: 0;
+    transform: scale(.1) rotate(0deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.5) rotate(35deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+.gift-reveal.exploding .gift-reveal-star {
+  animation: starExplode .65s ease forwards;
+}
+
+@keyframes starExplode {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(2.5) rotate(90deg);
+    filter: brightness(2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(9) rotate(180deg);
+    filter: brightness(3);
+  }
+}
+
+.gift-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gift-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--particle-color);
+  box-shadow: 0 0 8px var(--particle-color), 0 0 18px var(--particle-color);
+  opacity: 0;
+}
+
+.gift-reveal.exploding .gift-particle {
+  animation: particleBurst var(--duration) ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+@keyframes particleBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.2);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--move-x)),
+        calc(-50% + var(--move-y))
+      )
+      scale(0);
+  }
+}
+
+.birthday-message {
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transform: translateY(25px) scale(.9);
+  text-shadow: 0 0 20px #e7a6ca66;
+}
+
+.gift-reveal.show-message .birthday-message {
+  animation: birthdayTextIn 1.6s ease forwards;
+}
+
+@keyframes birthdayTextIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(.9);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.birthday-message .happy {
+  display: block;
+  color: #fff1f8;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(43px, 11vw, 76px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.birthday-message .snowflake {
+  display: block;
+  margin-top: 8px;
+  color: #e8b9d2;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 9vw, 62px);
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.birthday-message .tiny-star {
+  display: block;
+  color: #f4d9e8;
+  font-size: 22px;
+  margin-top: 28px;
+  animation: tinyTwinkle 2s ease-in-out infinite;
+}
+
+@keyframes tinyTwinkle {
+  0%, 100% { opacity: .5; transform: scale(.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.gift-reveal-footer {
+  position: absolute;
+  z-index: 5;
+  bottom: 35px;
+  color: #d5b7c9;
+  font-size: 8px;
+  letter-spacing: 4px;
+  opacity: 0;
+}
+
+.gift-reveal.show-message .gift-reveal-footer {
+  animation: welcomeText 1.5s 1s ease forwards;
+}
+
+.gift-reveal-close {
+  position: absolute;
+  z-index: 6;
+  top: 22px;
+  right: 22px;
+  border: 1px solid #b98aa5;
+  color: #ead8df;
+  background: #170f1b88;
+  padding: 9px 13px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0;
+}
+
+.gift-reveal.show-message .gift-reveal-close {
+  animation: welcomeText 1s 2s ease forwards;
+}
 
 .final-card {
   max-width: 620px;
-  margin: auto;
+  margin: 45px auto 0;
   border: 1px solid #604759;
   background: linear-gradient(145deg, #241722, #120e15);
   padding: 40px 25px;
@@ -711,6 +1114,18 @@ button {
   .envelope h3 {
     font-size: 21px;
   }
+
+  .final-gift-stage {
+    padding: 30px 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-reveal *,
+  .gift-box *,
+  .birthday-message * {
+    animation-duration: .01ms !important;
+  }
 }
 </style>
 </head>
@@ -781,8 +1196,6 @@ button {
         <h2>THE FINAL GIFT</h2>
         <p>One last thing, just for you.</p>
       </button>
-
-      <!-- NEW ROOMS -->
 
       <button class="room-card" onclick="openRoom('playlist')">
         <span class="room-number">05</span>
@@ -946,6 +1359,78 @@ button {
       <p>There's something I wanted you to know.</p>
     </div>
 
+    <!-- SECRET BOX -->
+
+    <div class="final-gift-stage">
+
+      <div class="final-gift-label">A LITTLE SURPRISE FOR YOU</div>
+
+      <h3 class="final-gift-question">
+        What is the special name you gave me?
+      </h3>
+
+      <p class="final-gift-hint">
+        One little question before you get your gift...
+      </p>
+
+      <div class="gift-box-area">
+        <div class="gift-box" id="gift-box">
+          <div class="gift-box-base"></div>
+          <div class="gift-box-lid"></div>
+          <div class="gift-bow"></div>
+          <div class="gift-lock">♡</div>
+        </div>
+      </div>
+
+      <div class="gift-answer-area" id="gift-answer-area">
+        <input
+          type="text"
+          id="gift-answer"
+          placeholder="Your answer..."
+          autocomplete="off"
+        >
+
+        <button
+          class="primary-btn gift-open-btn"
+          onclick="unlockGift()"
+        >
+          UNLOCK THE GIFT
+        </button>
+
+        <div class="gift-error" id="gift-error"></div>
+      </div>
+
+    </div>
+
+    <!-- FULL SCREEN STAR REVEAL -->
+
+    <div id="gift-reveal" class="gift-reveal">
+
+      <button
+        class="gift-reveal-close"
+        onclick="closeGiftReveal()"
+      >
+        CLOSE
+      </button>
+
+      <div class="gift-particles" id="gift-particles"></div>
+
+      <div class="gift-reveal-star" id="gift-reveal-star">✦</div>
+
+      <div class="birthday-message" id="birthday-message">
+        <span class="happy">Happy Birthday</span>
+        <span class="snowflake">My Sweet Snowflake</span>
+        <span class="tiny-star">✧</span>
+      </div>
+
+      <div class="gift-reveal-footer">
+        A LITTLE WORLD MADE JUST FOR YOU
+      </div>
+
+    </div>
+
+    <!-- ORIGINAL LETTER - PRESERVED -->
+
     <div class="final-card">
       <div class="star">✧</div>
 
@@ -971,6 +1456,7 @@ button {
 
       <div class="signature">Always, Liam.</div>
     </div>
+
   </section>
 
   <!-- NEW EMPTY PAGE 05 -->
@@ -1331,7 +1817,135 @@ function checkWin() {
   }
 }
 
+
+/* SECRET BOX - FINAL GIFT */
+
+let giftUnlocked = false;
+let giftRevealTimer = null;
+
+function unlockGift() {
+  if (giftUnlocked) return;
+
+  const answer = document
+    .getElementById("gift-answer")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const error = document.getElementById("gift-error");
+
+  if (answer === "nutella") {
+    giftUnlocked = true;
+    error.textContent = "";
+
+    const box = document.getElementById("gift-box");
+    const answerArea = document.getElementById("gift-answer-area");
+
+    box.classList.add("opened");
+
+    answerArea.style.transition = "opacity .5s ease";
+    answerArea.style.opacity = "0";
+
+    setTimeout(() => {
+      answerArea.classList.add("hidden");
+      startGiftReveal();
+    }, 800);
+
+  } else {
+    error.textContent = "Not quite... try again.";
+    document.getElementById("gift-answer").value = "";
+  }
+}
+
+document.getElementById("gift-answer").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    unlockGift();
+  }
+});
+
+
+/* CREATE THE GLITTER PARTICLES */
+
+function createGiftParticles() {
+  const container = document.getElementById("gift-particles");
+  container.innerHTML = "";
+
+  const colors = [
+    "#f8d9e9",
+    "#e9a9ca",
+    "#ffffff",
+    "#c58b9f",
+    "#d6c7e8",
+    "#f2c6dd"
+  ];
+
+  for (let i = 0; i < 95; i++) {
+    const particle = document.createElement("span");
+
+    particle.className = "gift-particle";
+
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 100 + Math.random() * 480;
+
+    const moveX = Math.cos(angle) * distance;
+    const moveY = Math.sin(angle) * distance;
+
+    const size = 2 + Math.random() * 5;
+    const duration = 1.2 + Math.random() * 1.5;
+    const delay = Math.random() * .25;
+
+    particle.style.setProperty("--move-x", `${moveX}px`);
+    particle.style.setProperty("--move-y", `${moveY}px`);
+    particle.style.setProperty("--size", `${size}px`);
+    particle.style.setProperty("--duration", `${duration}s`);
+    particle.style.setProperty("--delay", `${delay}s`);
+    particle.style.setProperty(
+      "--particle-color",
+      colors[Math.floor(Math.random() * colors.length)]
+    );
+
+    container.appendChild(particle);
+  }
+}
+
+
+/* OPEN THE STAR REVEAL */
+
+function startGiftReveal() {
+  const reveal = document.getElementById("gift-reveal");
+
+  createGiftParticles();
+
+  reveal.classList.remove("exploding", "show-message");
+  reveal.classList.add("active");
+
+  giftRevealTimer = setTimeout(() => {
+    reveal.classList.add("exploding");
+  }, 1800);
+
+  giftRevealTimer = setTimeout(() => {
+    reveal.classList.add("show-message");
+  }, 2450);
+}
+
+
+/* CLOSE THE FULL SCREEN REVEAL */
+
+function closeGiftReveal() {
+  const reveal = document.getElementById("gift-reveal");
+
+  reveal.classList.remove(
+    "active",
+    "exploding",
+    "show-message"
+  );
+
+  if (giftRevealTimer) {
+    clearTimeout(giftRevealTimer);
+  }
+}
+
 </script>
 
 </body>
-</html>
+  </html>
